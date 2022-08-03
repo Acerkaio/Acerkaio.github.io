@@ -6,7 +6,7 @@
   <link href="https://acerkaio.github.io/atom.xml" rel="self"/>
   
   <link href="https://acerkaio.github.io/"/>
-  <updated>2022-08-02T08:13:01.340Z</updated>
+  <updated>2022-08-03T03:48:37.603Z</updated>
   <id>https://acerkaio.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>每周一题</title>
+    <link href="https://acerkaio.github.io/2022/08/03/%E6%AF%8F%E5%91%A8%E4%B8%80%E9%A2%98/"/>
+    <id>https://acerkaio.github.io/2022/08/03/%E6%AF%8F%E5%91%A8%E4%B8%80%E9%A2%98/</id>
+    <published>2022-08-03T03:40:57.000Z</published>
+    <updated>2022-08-03T03:48:37.603Z</updated>
+    
+    <content type="html"><![CDATA[<p>一道趣味题。</p><h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/fy3vy2ua.png"><br>建议作答时间：5min；<br>标签：思维题。</p><h3 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/d6wu79ix.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;一道趣味题。&lt;/p&gt;
+&lt;h3 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://cdn.luogu.com.cn/upload/image_host</summary>
+      
+    
+    
+    
+    
+    <category term="每周一题" scheme="https://acerkaio.github.io/tags/%E6%AF%8F%E5%91%A8%E4%B8%80%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 NexT 主题</title>
