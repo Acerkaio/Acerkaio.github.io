@@ -1,45 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>每周一题</title>
-      <link href="/2022/08/03/%E6%AF%8F%E5%91%A8%E4%B8%80%E9%A2%98/"/>
-      <url>/2022/08/03/%E6%AF%8F%E5%91%A8%E4%B8%80%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<p>一道趣味题。</p><h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/fy3vy2ua.png"><br>建议作答时间：5min；<br>标签：思维题。</p><h3 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/d6wu79ix.png"></p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 每周一题 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>使用 NexT 主题</title>
-      <link href="/2022/08/02/%E4%BD%BF%E7%94%A8-NexT-%E4%B8%BB%E9%A2%98/"/>
-      <url>/2022/08/02/%E4%BD%BF%E7%94%A8-NexT-%E4%B8%BB%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<h1 id="真不容易"><a href="#真不容易" class="headerlink" title="真不容易"></a>真不容易</h1><p>一路报错一路修，不过积累了丰富的经验，功能日后也会更加完善。</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 生活 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+<search>
+  <entry>
+    <title>使用 NexT 主题</title>
+    <url>/2022/08/02/%E4%BD%BF%E7%94%A8-NexT-%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="真不容易"><a href="#真不容易" class="headerlink" title="真不容易"></a>真不容易</h1><p>一路报错一路修，不过积累了丰富的经验，功能日后也会更加完善。</p>
+]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>每周一题</title>
+    <url>/2022/08/03/%E6%AF%8F%E5%91%A8%E4%B8%80%E9%A2%98/</url>
+    <content><![CDATA[<p>一道趣味题。</p>
+<h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/fy3vy2ua.png"><br>建议作答时间：5min；<br>标签：思维题。</p>
+<h3 id="答案："><a href="#答案：" class="headerlink" title="答案："></a>答案：</h3><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/d6wu79ix.png"></p>
+]]></content>
+      <tags>
+        <tag>每周一题</tag>
+      </tags>
+  </entry>
 </search>
