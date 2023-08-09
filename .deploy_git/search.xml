@@ -57,20 +57,6 @@
       </tags>
   </entry>
   <entry>
-    <title>KMP学习笔记</title>
-    <url>/2023/03/12/KMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="重新定义水博客"><a href="#重新定义水博客" class="headerlink" title="重新定义水博客"></a>重新定义水博客</h3><p>border[y] = x 表示 b[1 ~ x] = b[(y - x + 1) ~ y]</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">find_border</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= lb; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (b[i] != b[j + <span class="number">1</span>] &amp;&amp; j) &#123; <span class="comment">//当失配时</span></span><br><span class="line">            j = border[j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (b[i] == b[j + <span class="number">1</span>]) &#123; <span class="comment">//可以加入一个 </span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        border[i] = j;  <span class="comment">//储存 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= la; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[i] != b[j + <span class="number">1</span>] &amp;&amp; j) j = border[j]; <span class="comment">//失恋了 </span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == b[j + <span class="number">1</span>]) j++;  <span class="comment">//计入 </span></span><br><span class="line">        <span class="keyword">if</span> (j == lb) cout &lt;&lt; i - j + <span class="number">1</span> &lt;&lt; endl,j = border[j]<span class="comment">//防止j超过lb; //匹配van了 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PHP环境</title>
     <url>/2022/12/23/PHP%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>ε=(´ο｀*)))唉，为了以后不掉坑，现在做个笔记。</p>
@@ -89,6 +75,20 @@
       </categories>
       <tags>
         <tag>记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KMP学习笔记</title>
+    <url>/2023/03/12/KMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="重新定义水博客"><a href="#重新定义水博客" class="headerlink" title="重新定义水博客"></a>重新定义水博客</h3><p>border[y] = x 表示 b[1 ~ x] = b[(y - x + 1) ~ y]</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">find_border</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= lb; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (b[i] != b[j + <span class="number">1</span>] &amp;&amp; j) &#123; <span class="comment">//当失配时</span></span><br><span class="line">            j = border[j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (b[i] == b[j + <span class="number">1</span>]) &#123; <span class="comment">//可以加入一个 </span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        border[i] = j;  <span class="comment">//储存 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= la; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[i] != b[j + <span class="number">1</span>] &amp;&amp; j) j = border[j]; <span class="comment">//失恋了 </span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == b[j + <span class="number">1</span>]) j++;  <span class="comment">//计入 </span></span><br><span class="line">        <span class="keyword">if</span> (j == lb) cout &lt;&lt; i - j + <span class="number">1</span> &lt;&lt; endl,j = border[j]<span class="comment">//防止j超过lb; //匹配van了 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
   <entry>
