@@ -1,0 +1,183 @@
+# user info
+user:
+  name: Acerkaio
+  first_name: Acer
+  last_name: Kaio
+  email: what667172@163.com
+  domain: https://www.acerkaio.top/
+  avatar: https://pic.imgdb.cn/item/64ba70bd1ddac507cc235b54.jpg
+  describe: Acerkaio ❤ Elaina  
+  ruleText: 二次元 & 信息科技 & OI 爱好者，文章内容积极向上。
+
+# logo
+favicon:
+  logo: https://pic.imgdb.cn/item/64ba73ee1ddac507cc2f606f.png
+  icon16: https://pic.imgdb.cn/item/64ba73ee1ddac507cc2f606f.png
+  icon32: https://pic.imgdb.cn/item/64ba73ee1ddac507cc2f606f.png
+  appleTouchIcon: https://pic.imgdb.cn/item/64ba73ee1ddac507cc2f606f.png
+  webmanifest:
+  visibilitychange: true
+  hidden: /failure.ico # Displays an icon when not visible
+  showText: Acerkaio | Open-
+  hideText: Acerkaio | Close
+
+# Banner settings
+banner:
+  default:
+    type: img
+    bgurl: /img/banner.png
+    bannerText: Hi my new friend!
+  index:
+    type: video
+    bgurl: /img/晚上.mp4
+    bannerTitle: 深山踏红叶，<br>耳畔闻鹿鸣。
+    bannerText: HI! I'm OI & Music lover.
+    videoUrl: 
+  archive:
+    type: img
+    bgurl: https://pic.imgdb.cn/item/64ba755f1ddac507cc3499c3.png
+    bannerTitle: 天高散孤云，<br>落日澄空故乡影，飘摇游子心。
+    bannerText: The article archive
+  links:
+    type: img
+    bgurl: https://pic.imgdb.cn/item/64ba758c1ddac507cc35315b.jpg
+    bannerTitle: 莫愁前路无知己，<br>天下谁人不识君。
+    bannerText: A link to a friend's website
+  comment:
+    bannerTitle: 醉后不知天在水，<br>满船清梦压星河。
+    bannerText: The magic tree hole
+  about:
+    type: img
+    bgurl: https://pic.imgdb.cn/item/649c2ec51ddac507cc5ae81d.jpg
+    bannerTitle: 醉后不知天在水，<br>满船清梦压星河。
+    bannerText: About me
+
+# links
+links:
+  - name: 白云苍狗 # name
+    url: //www.imalun.com/ # url
+    image: //www.imalun.com/images/avatar.jpg # avater
+    desc: 醒，亦在人间；梦，亦在人间 # description
+  - name: FiresonZ
+    url: //blog.firesonz.top/
+    image: //blog.firesonz.top/images/avatar.webp
+    desc: Oier
+  - name: Scorpio_Limit
+    url: //scorpio-limit.github.io/
+    image: //cdn.luogu.com.cn/upload/usericon/532992.png
+    desc: 天蝎座_极限
+
+# Sidebar settings
+sidebar:
+  typedTextPrefix: I`m
+  typedText: [ 'Oier and web devoloper' ]
+  info: 
+    - key: sidebar.residence
+      val: Earth
+    - key: sidebar.city
+      val: Ganzhou
+    - key: sidebar.age
+      val: Maybe 14
+  social:
+    - name: Github
+      icon: fab fa-github
+      url: https://github.com/acerkaio
+    - name: Luogu
+      icon: fas fa-code
+      url: https://www.luogu.com.cn/user/514850
+
+# About page settings
+about:
+  title: 在夜空所有星星熄灭的时候，所有梦想、所有溪流，都能汇入同一片大海中，那时我们终会相见。
+  introduction: 我是 <strong>Acerkaio</strong>，相遇即是缘分，很感谢您能够饶有兴致地浏览这个页面。作为一名 OIer，我将分享：题目题解、生活日常、和一些有趣的东西。
+  blog: 
+    <ul class="trm-list">
+      <li>作者：Acerkaio </li>
+      <li>主题：Async </li>
+      <li>背景图片：来自 wallhaven 与 wallpaper engine</li>
+    </ul>
+  privacy: 
+    本网站不会追踪访客行为，且不要求访客提供任何敏感信息（比如真实姓名、身份证号码、手机号等），因而也不存在任何隐私泄漏问题。访客参与评论，必须遵守法律法规和基本道德规范，文明礼貌。严禁发布任何有关淫秽、反动、暴力、博彩、恐吓、低俗的内容或违法信息，在尊重言论自由的同时请保持和平与理性。请勿对他人采取不友好的评论或其它过激行为。
+# Footer settings
+footer:
+  # Hexo link (Powered by Hexo).
+  powered:
+    enable: true
+  # Beian icp information for Chinese users. In China, every legal website should have a beian icp in website footer.
+  # https://beian.miit.gov.cn/
+  beian:
+    enable: false
+    icp: 
+  # Copyright date
+  copyrightYear:
+  # 
+  live_time:
+    enable: true
+    prefix: footer.tips
+    start_time: 08/30/2022 15:00:00
+  #
+  custom_text: <a href="https://icp.gov.moe/?keyword=20231721" target="_blank">萌ICP备20231721号</a>
+
+# Reward (Donate)
+# If enable true, reward would be displayed in every posts and pages by default.
+# You can show or hide reward in a specific page throuth `reward: true | false` in Front Matter.
+reward:
+  enable: true
+  comment: reward.comment
+# url:
+  methods:
+    - name: 支付宝
+      path: https://pic1.imgdb.cn/item/6338329b16f2c2beb1ed61a4.jpg
+
+# Top navigation menu
+top_bars:
+  - title: menu.home
+    url: /
+  - title: menu.archives
+    url: /archives/
+  - title: menu.links
+    url: /links/
+  - title: menu.about
+    url: /about/
+  - title: album
+    url: /album/
+  - title: CPSchecker
+    url: /CPSchecker/
+
+    
+# Blog search
+search:
+  enable: true
+  type: local #local engine
+  href: 'https://www.google.com/search?q=site:'
+  # href: "https://www.baidu.com/s?wd=site:"
+  # href: "https://www.bing.com/search?q=site:"
+  domain: 
+
+#baidu_push
+baidu_push: true
+
+# Post wordcount
+# https://github.com/willin/hexo-wordcount
+wordcount:
+  enable: true
+  count: true
+  time: true
+
+# Article table of contents
+toc:
+  enable: true
+  list_number: true
+  max_depth: 1145141919810
+  min_depth: 1
+
+# Home page category card configuration
+categorie_card:
+  enable: true
+  len: 2
+  list:
+
+# Lower right button
+rightside:
+  readmode: true
+  aside: true

@@ -1,0 +1,10 @@
+<%- partial('../post/post-info') %>
+<div class="trm-card ">
+    <%- partial('../post/post-content') %>
+    <%- partial('../post/reward') %>
+    <%- partial('../post/post-copyright') %>
+</div>
+<%- partial('../post/post-next-prev') %>
+<% if(page.comments) { %>
+    <%- partial('../../_third-party/comment/index') %>
+<% } %>

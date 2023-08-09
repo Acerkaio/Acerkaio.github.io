@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> cps 测试 </title>
+	<link rel="shortcut icon" href="https://cdn.acwing.com/static/web/gif/code_status_loading.gif">
+	<style>
+		.row-cps {
+			margin-left: 0px;
+			width: 100%;
+			text-align: center;
+		}
+
+		.main-click {
+			user-select: none;
+			-webkit-user-seletct: none;
+			-moz-user-seletct: none;
+			-ms-user-seletct: none;
+		}
+
+		.row-cps>div>div {
+			cursor: pointer;
+			
+		}
+		* {
+			user-select: none;
+			-webkit-user-seletct: none;
+			-moz-user-seletct: none;
+			-ms-user-seletct: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div style="margin-top: 50px;">
+		<div class="row-cps">
+			<span>请选择测试时间：</span>
+			<div>
+				<div id = "clst" style="text-align: center;width:10%;display: inline-block;font-size:20px;background-color: rgb(233, 233, 233);"
+					onclick="st()">1s</div>&nbsp;<div
+					id = "clnd" style="text-align: center;width:10%;display: inline-block;font-size:20px;background-color: rgb(233, 233, 233);"
+					onclick="nd()">5s</div>&nbsp;<div
+					id = "clrd" style="text-align: center;width:10%;display: inline-block;font-size:20px;background-color: rgb(233, 233, 233);"
+					onclick="rd()">15s</div>
+			</div>
+		</div>
+		<div id="clcl" class="main-click" onclick="ac()"
+			style="padding:10%;background-color: #000; color:#fff;text-align:center;">
+			<h1>click me!</h1>
+		</div>
+		<div id="ts" style="text-align:center;font-size:20px;">
+		</div>
+		<div id="zzb" style="text-align:center;font-size:40px;">
+		</div>
+		<div id="ti" style="text-align:center;font-size:20px;">
+		</div>
+	</div>
+	<script>
+		var b = document.getElementById("zzb");
+		var t = document.getElementById("ti");
+		var ts = document.getElementById("ts");
+		var fl = localStorage.getItem("time");
+		var a = 0;
+		var time = 0;
+		var cl = 0;
+		var flag = 0;
+		var num = 10;
+		function cling() {
+			document.getElementById("clcl").style.cursor = "crosshair";
+			setTimeout(function () { document.getElementById("clcl").style.cursor = "" }, 10);
+		}
+		st();
+		if (fl == "nd") {
+			nd();
+		}
+		if (fl == "rd") {
+			rd();
+		}
+		function st() {
+			if (flag == 0) {
+				document.getElementById('clst').style.backgroundColor = "#5E72E4";
+				document.getElementById('clnd').style.backgroundColor = "rgb(233, 233, 233)";
+				document.getElementById('clrd').style.backgroundColor = "rgb(233, 233, 233)";
+				localStorage.setItem("time", "st");
+				num = 10;
+				ts.innerHTML = ("当前测试时间： 1s");
+			}
+		}
+		function nd() {
+			if (flag == 0) {
+				document.getElementById('clnd').style.backgroundColor = "#5E72E4";
+				document.getElementById('clst').style.backgroundColor = "rgb(233, 233, 233)";
+				document.getElementById('clrd').style.backgroundColor = "rgb(233, 233, 233)";
+				localStorage.setItem("time", "nd");
+				num = 50;
+				ts.innerHTML = ("当前测试时间： 5s");
+			}
+		}
+		function rd() {
+			if (flag == 0) {
+				document.getElementById('clrd').style.backgroundColor = "#5E72E4";
+				document.getElementById('clnd').style.backgroundColor = "rgb(233, 233, 233)";
+				document.getElementById('clst').style.backgroundColor = "rgb(233, 233, 233)";
+				localStorage.setItem("time", "rd");
+				num = 150;
+				ts.innerHTML = ("当前测试时间： 15s");
+			}
+		}
+		function ac() {
+			cling();
+			if (flag == 0) {
+				b.innerHTML = 1;
+				flag = 1;
+				a = 1;
+				cl = 1;
+				time = 0;
+				star();
+			} else {
+				a += 1;
+				b.innerHTML = a;
+			}
+
+		}
+		function star() {
+			let intval = setInterval(function () {
+				if (cl == 1) {
+					if (time < num) {
+						time += 1, t.innerHTML = time / 10 + "s";
+					} else {
+						b.innerHTML = 0;
+						window.alert("您的CPS为" + a / num);
+						a = 0;
+						clearInterval(intval);
+						flag = 0;
+						return;
+					}
+				}
+			}, 100);
+		}
+	</script>
+
+</body>
+
+</html>
