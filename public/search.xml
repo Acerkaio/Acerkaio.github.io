@@ -57,6 +57,20 @@
       </tags>
   </entry>
   <entry>
+    <title>KMP学习笔记</title>
+    <url>/2023/03/12/KMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h3 id="重新定义水博客"><a href="#重新定义水博客" class="headerlink" title="重新定义水博客"></a>重新定义水博客</h3><p>border[y] = x 表示 b[1 ~ x] = b[(y - x + 1) ~ y]</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">find_border</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= lb; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (b[i] != b[j + <span class="number">1</span>] &amp;&amp; j) &#123; <span class="comment">//当失配时</span></span><br><span class="line">            j = border[j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (b[i] == b[j + <span class="number">1</span>]) &#123; <span class="comment">//可以加入一个 </span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        border[i] = j;  <span class="comment">//储存 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= la; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[i] != b[j + <span class="number">1</span>] &amp;&amp; j) j = border[j]; <span class="comment">//失恋了 </span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == b[j + <span class="number">1</span>]) j++;  <span class="comment">//计入 </span></span><br><span class="line">        <span class="keyword">if</span> (j == lb) cout &lt;&lt; i - j + <span class="number">1</span> &lt;&lt; endl,j = border[j]<span class="comment">//防止j超过lb; //匹配van了 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP环境</title>
     <url>/2022/12/23/PHP%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h2><p>ε=(´ο｀*)))唉，为了以后不掉坑，现在做个笔记。</p>
@@ -78,18 +92,27 @@
       </tags>
   </entry>
   <entry>
-    <title>KMP学习笔记</title>
-    <url>/2023/03/12/KMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="重新定义水博客"><a href="#重新定义水博客" class="headerlink" title="重新定义水博客"></a>重新定义水博客</h3><p>border[y] = x 表示 b[1 ~ x] = b[(y - x + 1) ~ y]</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">find_border</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= lb; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (b[i] != b[j + <span class="number">1</span>] &amp;&amp; j) &#123; <span class="comment">//当失配时</span></span><br><span class="line">            j = border[j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (b[i] == b[j + <span class="number">1</span>]) &#123; <span class="comment">//可以加入一个 </span></span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        border[i] = j;  <span class="comment">//储存 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Ubuntu更换开机动画为Elania</title>
+    <url>/2023/08/15/Ubuntu%E6%9B%B4%E6%8D%A2%E5%BC%80%E6%9C%BA%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<h2 id="开始前"><a href="#开始前" class="headerlink" title="开始前"></a>开始前</h2><p>作者使用 <strong>Ubuntu 22.04.3 LTS</strong>，教程开始前请判断您的 Ubuntu 是否使用 <strong>Plymouth</strong>!</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>作者已经帮您整合好 Elania 主题，您需要下载其 <a href="https://blog.acerkaio.top/download/Elania.zip">方式1</a> | <a href="https://blog.acerkaio.top/download/Elania.zip">方式2 (可能更快)</a></p>
+<h2 id="更改文件夹权限"><a href="#更改文件夹权限" class="headerlink" title="更改文件夹权限"></a>更改文件夹权限</h2><p>下载后，我们打开 /usr/share/plymouth/</p>
+<p>为了方便，我们使用以下命令更改文件夹权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chown -R &lt;你的用户名&gt;:&lt;你的用户名&gt; /usr/share/plymouth/themes/</span><br></pre></td></tr></table></figure>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><p>打开 themes 文件夹，将下载的 Elania.zip 解压到这里为 Elania 文件夹。</p>
+<p>先使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install plymouth-theme*</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">kmp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= la; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[i] != b[j + <span class="number">1</span>] &amp;&amp; j) j = border[j]; <span class="comment">//失恋了 </span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == b[j + <span class="number">1</span>]) j++;  <span class="comment">//计入 </span></span><br><span class="line">        <span class="keyword">if</span> (j == lb) cout &lt;&lt; i - j + <span class="number">1</span> &lt;&lt; endl,j = border[j]<span class="comment">//防止j超过lb; //匹配van了 </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-      </tags>
+<p>然后使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/Elania/ubuntu-gnome-logo.plymouth 150</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接着使用以下命令并找到 Elania 有关字段，填写编号。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config default.plymouth</span><br></pre></td></tr></table></figure>
+<p>最后生效（可能会等久一点）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo update-initramfs -u</span><br><span class="line">sudo update-grub</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>您也可以将其中的 PNG 文件做适当更改。</p>
+]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
