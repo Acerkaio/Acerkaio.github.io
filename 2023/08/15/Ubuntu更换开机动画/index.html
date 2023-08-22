@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="true" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Ubuntu更换开机动画为Elaina | Acerkaio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="开始前作者使用 Ubuntu 22.04.3 LTS，教程开始前请判断您的 Ubuntu 是否使用 Plymouth! 准备作者已经帮您整合好 Elaina 主题，您需要下载其 方式1 | 方式2 (可能更快) 更改文件夹权限下载后，我们打开 &#x2F;usr&#x2F;share&#x2F;plymouth&#x2F; 为了方便，我们使用以下命令更改文件夹权限： 1sudo chown -R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu更换开机动画为Elaina">
+<meta property="og:url" content="https://www.acerkaio.top/2023/08/15/Ubuntu%E6%9B%B4%E6%8D%A2%E5%BC%80%E6%9C%BA%E5%8A%A8%E7%94%BB/index.html">
+<meta property="og:site_name" content="Acerkaio">
+<meta property="og:description" content="开始前作者使用 Ubuntu 22.04.3 LTS，教程开始前请判断您的 Ubuntu 是否使用 Plymouth! 准备作者已经帮您整合好 Elaina 主题，您需要下载其 方式1 | 方式2 (可能更快) 更改文件夹权限下载后，我们打开 &#x2F;usr&#x2F;share&#x2F;plymouth&#x2F; 为了方便，我们使用以下命令更改文件夹权限： 1sudo chown -R">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-15T12:19:53.000Z">
+<meta property="article:modified_time" content="2023-08-22T11:41:24.124Z">
+<meta property="article:author" content="Acerkaio">
+<meta property="article:tag" content="记录">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Acerkaio" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon-light-192.png">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  
+  
+    
+<div id="banner" class="">
+  <img src="/assets/banner.png" itemprop="image">
+  <div id="banner-dim"></div>
+</div>
+ 
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Acerkaio </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="material-symbols-rounded light-mode-icon">wb_sunny</span>
+      <span class="material-symbols-rounded dark-mode-icon">dark_mode</span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS 订阅">
+        <span class="material-symbols-rounded rss">rss_feed</span>
+      </a>
+    
+    <a id="nav-search-btn" class="nav-icon" title="搜索" style="display: none;">
+      <span class="material-symbols-rounded">search</span>
+    </a>
+    <div id="nav-menu-btn" class="nav-icon">
+      <span class="material-symbols-rounded">menu</span>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS 订阅">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=https://pic.imgdb.cn/item/64ba59041ddac507ccc80e2c.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Acerkaio </div>
+      <div class="dot"></div>
+      <div class="subtitle">Dedicated to Elaina. </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/514850" title="Luogu"><i class="fa-solid fa-user"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://store.steampowered.com" title="Steam"><i class="fa-brands fa-steam"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/Acerkaio" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E9%A2%98%E8%A7%A3/">
+                题解
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E8%AE%B0%E5%BD%95/">
+                记录
+                <div class="category-count">4</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                学习笔记
+                <div class="category-count">2</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E5%88%9B%E4%BD%9C/">
+                创作
+                <div class="category-count">1</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%88%9B%E4%BD%9C/" rel="tag">创作</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">归档</h3>
+      
+      
+        <a class="archive-link" href="/archives/2023/08 ">
+          八月 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/03 ">
+          三月 2023 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2023/01 ">
+          一月 2023 
+          <div class="archive-count">2 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2022/12 ">
+          十二月 2022 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2022/11 ">
+          十一月 2022 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2022/10 ">
+          十月 2022 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2022/08 ">
+          八月 2022 
+          <div class="archive-count">2 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">最新文章</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2023/08/15/Ubuntu%E6%9B%B4%E6%8D%A2%E5%BC%80%E6%9C%BA%E5%8A%A8%E7%94%BB/" title="Ubuntu更换开机动画为Elaina" >
+            <div class="recent-link-text">
+              Ubuntu更换开机动画为Elaina
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/03/12/KMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="KMP学习笔记" >
+            <div class="recent-link-text">
+              KMP学习笔记
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/01/25/%E5%9B%BD%E4%BA%A7%E7%B3%BB%E7%BB%9FDeepin20%E5%88%9D%E4%BD%93%E9%AA%8C/" title="国产系统Deepin20初体验" >
+            <div class="recent-link-text">
+              国产系统Deepin20初体验
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2023/01/13/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="树链剖分学习笔记" >
+            <div class="recent-link-text">
+              树链剖分学习笔记
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2022/12/23/PHP%E7%8E%AF%E5%A2%83/" title="PHP环境" >
+            <div class="recent-link-text">
+              PHP环境
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+<article id="post-Ubuntu更换开机动画" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        Ubuntu更换开机动画为Elaina
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2023-08-15T12:19:53.000Z" itemprop="datePublished">2023-08-15</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            226 词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h2 id="开始前"><a href="#开始前" class="headerlink" title="开始前"></a>开始前</h2><p>作者使用 <strong>Ubuntu 22.04.3 LTS</strong>，教程开始前请判断您的 Ubuntu 是否使用 <strong>Plymouth</strong>!</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>作者已经帮您整合好 Elaina 主题，您需要下载其 <a target="_blank" rel="noopener" href="https://blog.acerkaio.top/download/Elaina.zip">方式1</a> | <a target="_blank" rel="noopener" href="https://vercel.acerkaio.top/download/Elaina.zip">方式2 (可能更快)</a></p>
+<h2 id="更改文件夹权限"><a href="#更改文件夹权限" class="headerlink" title="更改文件夹权限"></a>更改文件夹权限</h2><p>下载后，我们打开 &#x2F;usr&#x2F;share&#x2F;plymouth&#x2F;</p>
+<p>为了方便，我们使用以下命令更改文件夹权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R &lt;你的用户名&gt;:&lt;你的用户名&gt; /usr/share/plymouth/themes/</span><br></pre></td></tr></table></figure>
+<h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><p>打开 themes 文件夹，将下载的 Elaina.zip 解压到这里为 Elaina 文件夹。</p>
+<p>先使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install plymouth-theme*</span><br></pre></td></tr></table></figure>
+
+<p>然后使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/Elaina/ubuntu-gnome-logo.plymouth 150</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>接着使用以下命令并找到 Elaina 有关字段，填写编号。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --config default.plymouth</span><br></pre></td></tr></table></figure>
+<p>最后生效（可能会等久一点）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo update-initramfs -u</span><br><span class="line">sudo update-grub</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>您也可以将其中的 PNG 文件做适当更改。</p>
+
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left  disabled "
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/2023/03/12/KMP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+      title="KMP学习笔记"
+     >
+
+    <p class="title-text">
+      
+        KMP学习笔记
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+ 
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2023 Acerkaio<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn" onclick="topFunction()">
+        <span class="material-symbols-rounded">keyboard_arrow_up</span>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.style.opacity = 1;
+        } else {
+            btn.style.opacity = 0;
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
