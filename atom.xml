@@ -6,7 +6,7 @@
   <link href="https://www.acerkaio.top/atom.xml" rel="self"/>
   
   <link href="https://www.acerkaio.top/"/>
-  <updated>2023-08-22T11:41:24.124Z</updated>
+  <updated>2023-11-08T12:22:15.559Z</updated>
   <id>https://www.acerkaio.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>闲话11.8</title>
+    <link href="https://www.acerkaio.top/2023/11/08/%E9%97%B2%E8%AF%9D11-8/"/>
+    <id>https://www.acerkaio.top/2023/11/08/%E9%97%B2%E8%AF%9D11-8/</id>
+    <published>2023-11-08T12:14:14.000Z</published>
+    <updated>2023-11-08T12:22:15.559Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="有人会看吗？"><a href="#有人会看吗？" class="headerlink" title="有人会看吗？"></a>有人会看吗？</h3><hr><p>喜欢头图，我的图片库: <a href="https://pic.acerkaio.top/">pic.acerkaio.top</a></p><hr><p>小说在看《魔女之旅 14卷》</p><hr><p>我想维护一个 WIKI，但我不会。挺苦恼的，我想了挺久，用 vitepress 先简单搭了一点，想到还要码好多就悲伤。主要是没经验啊…连 vitepress 适不适合都不知道。 WIKI 内容是剪辑入门，但是我自己技术也不高。推推推推，咕咕咕咕。</p><hr><p>挂个 <a href="https://www.luogu.com.cn/blog/514850/csp-2023-you-ji">CSP2023游记</a>。</p><hr><h3 id="头图："><a href="#头图：" class="headerlink" title="头图："></a>头图：</h3><p><img src="https://pic.acerkaio.top/img/Elaina/%E3%81%82%E3%81%9A%E3%83%BC%E3%82%8B/Flower/73247150_p0.jpg" alt="again"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;有人会看吗？&quot;&gt;&lt;a href=&quot;#有人会看吗？&quot; class=&quot;headerlink&quot; title=&quot;有人会看吗？&quot;&gt;&lt;/a&gt;有人会看吗？&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;喜欢头图，我的图片库: &lt;a href=&quot;https://pic.acerkaio.top/&quot;&gt;p</summary>
+      
+    
+    
+    
+    <category term="闲话" scheme="https://www.acerkaio.top/categories/%E9%97%B2%E8%AF%9D/"/>
+    
+    
+    <category term="闲话" scheme="https://www.acerkaio.top/tags/%E9%97%B2%E8%AF%9D/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu更换开机动画为Elaina</title>
