@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="树链剖分树链剖分（树剖&#x2F;链剖）有多种形式，如 重链剖分，长链剖分 和用于 Link&#x2F;cut Tree 的剖分（有时被称作“实链剖分”），大多数情况下（没有特别说明时），“树链剖分”都指“重链剖分”。引自：OI-WIKI 重链剖分我们给出一些定义 定义 重子节点 表示其子节点中子树最大的子结点。如果有多个子树最大的子结点，取其一。如果没有子节点，就无重子节点。  定义 轻子节点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树链剖分学习笔记">
+<meta property="og:url" content="https://blog.acerkaio.top/2023/01/13/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="AcerkaioBlog">
+<meta property="og:description" content="树链剖分树链剖分（树剖&#x2F;链剖）有多种形式，如 重链剖分，长链剖分 和用于 Link&#x2F;cut Tree 的剖分（有时被称作“实链剖分”），大多数情况下（没有特别说明时），“树链剖分”都指“重链剖分”。引自：OI-WIKI 重链剖分我们给出一些定义 定义 重子节点 表示其子节点中子树最大的子结点。如果有多个子树最大的子结点，取其一。如果没有子节点，就无重子节点。  定义 轻子节点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.acerkaio.top/img/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.jpg">
+<meta property="article:published_time" content="2023-01-13T13:52:22.000Z">
+<meta property="article:modified_time" content="2024-07-12T09:36:44.771Z">
+<meta property="article:author" content="Acerkaio">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.acerkaio.top/img/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.jpg">
+
+
+<title >树链剖分学习笔记</title>
+
+<!-- Favicon -->
+
+    <link href='https://cdn.luogu.com.cn/upload/usericon/514850.png?v=2.2.2' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='https://cdn.luogu.com.cn/upload/usericon/514850.png?v=2.2.2' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.2.2' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"blog.acerkaio.top","author":"Acerkaio","root":"/","typed_text":["an ordinary person."],"theme_version":"2.2.2","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"https://counter.imalun.com/www.acerkaio.top?theme=rule34","icon16":"https://cdn.luogu.com.cn/upload/usericon/514850.png","icon32":"https://cdn.luogu.com.cn/upload/usericon/514850.png","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"加载失败..."},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"08/30/2022 00:00:00","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":true,"el":".trm-banner","avatar":true,"delayRange":5000,"speed":80},"notice_outdate":{"enable":true,"style":"flat","limit_day":365,"position":"top"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-07-12 17:36:44"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.2" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="AcerkaioBlog" type="application/atom+xml">
+</head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="https://counter.imalun.com/www.acerkaio.top?theme=rule34">
+    
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links/" target="">
+                    友链
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/about/" target="">
+                    关于
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/album/" target="">
+                    album
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            Hola! This is a article about OI...
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            树链剖分学习笔记
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://cdn.luogu.com.cn/upload/usericon/514850.png">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ACerKa1o
+    </h5>
+    
+        <div class="trm-label">
+            I`m
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com/Acerkaio" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://steamcommunity.com/id/Acerkaio/" title="steam" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-steam"></i>
+        </a>
+    
+        <a href="https://www.zhihu.com/people/acerkaio" title="知乎" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-zhihu"></i>
+        </a>
+    
+        <a href="https://www.luogu.com/user/514850" title="洛谷" rel="nofollow" target="_blank">
+            <i class="iconfont fas fa-code"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                地址:
+            </div>
+            <div class="trm-label trm-label-light">
+                CHINA
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                年龄:
+            </div>
+            <div class="trm-label trm-label-light">
+                15
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:what667172@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            01/13
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            21:52
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Acerkaio
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="树链剖分"><a href="#树链剖分" class="headerlink" title="树链剖分"></a>树链剖分</h2><p>树链剖分（树剖&#x2F;链剖）有多种形式，如 重链剖分，长链剖分 和用于 Link&#x2F;cut Tree 的剖分（有时被称作“实链剖分”），大多数情况下（没有特别说明时），“树链剖分”都指“重链剖分”。<br>引自：<a target="_blank" rel="noopener" href="https://oi-wiki.org/graph/hld/#%E5%AD%90%E6%A0%91%E7%BB%B4%E6%8A%A4">OI-WIKI</a></p>
+<h3 id="重链剖分"><a href="#重链剖分" class="headerlink" title="重链剖分"></a>重链剖分</h3><h4 id="我们给出一些定义"><a href="#我们给出一些定义" class="headerlink" title="我们给出一些定义"></a>我们给出一些定义</h4><ul>
+<li><p>定义 重子节点 表示其子节点中子树最大的子结点。如果有多个子树最大的子结点，取其一。如果没有子节点，就无重子节点。</p>
+</li>
+<li><p>定义 轻子节点 表示剩余的所有子结点。</p>
+</li>
+<li><p>从这个结点到重子节点的边为 重边。</p>
+</li>
+<li><p>到其他轻子节点的边为 轻边。</p>
+</li>
+<li><p>若干条首尾衔接的重边构成 重链。</p>
+</li>
+</ul>
+<p><img src="https://oi-wiki.org/graph/images/hld.png"  data-tag='post-image' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>简单来说，我们要做的就是把一颗树剖分成一条条链（如图左到图右）</p>
+<p>具体点：我们把落单的结点也当作重链，那么我们要将整棵树就被剖分成若干条重链。</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>分两个 DFS，所需变量：</p>
+<p>fa[] : fa[i] 表示第 i 个节点的父亲节点；<br>Hson[] : Hson[i] 表示第 i 个节点的重儿子节点；<br>Dep[] : Dep[i] 表示第 i 个节点的深度（根节点深度为 1）；<br>Size[] : Size[i] 表示第 i 个节点的子树大小；<br>Top[] : Top[i] 表示第 i 个节点所在的链的顶部节点；<br>seg[] : seg[i] 表示第 i 个节点的 DFS 序；<br>rev[] : 表示 DFS 序所对应的节点编号。</p>
+<p>CODE：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs1</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">	fa[p] = f;</span><br><span class="line">	Dep[p] = Dep[f] + <span class="number">1</span>;</span><br><span class="line">	Size[p] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == f) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">Podfs1</span>(v, p);</span><br><span class="line">		Size[p] += Size[v];</span><br><span class="line">		<span class="keyword">if</span> (Size[v] &gt; Size[Hson[p]]) Hson[p] = v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs2</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> top)</span> </span>&#123;</span><br><span class="line">	++DFNtot;</span><br><span class="line">	Top[p] = top;</span><br><span class="line">	seg[p] = DFNtot;</span><br><span class="line">	rev[DFNtot] = p;</span><br><span class="line">	<span class="keyword">if</span> (Hson[p])</span><br><span class="line">		<span class="built_in">Podfs2</span>(Hson[p], top);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == fa[p]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (Hson[p] != v) <span class="built_in">Podfs2</span>(v, v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配合线段树与实现 LCA：</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3384">P3384 【模板】重链剖分&#x2F;树链剖分</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> _ = <span class="number">1e5</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> N, M, P, R, val[_];</span><br><span class="line"><span class="type">int</span> fa[_], Hson[_], Dep[_], Size[_], Top[_], seg[_], rev[_], DFNtot = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> head[_], Tot = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">	<span class="type">int</span> y, next;</span><br><span class="line">	<span class="built_in">Node</span>() &#123;next = <span class="number">0</span>;&#125;</span><br><span class="line">&#125; node[<span class="number">2</span> * _];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	++Tot;</span><br><span class="line">	node[Tot].y = y;</span><br><span class="line">	node[Tot].next = head[x];</span><br><span class="line">	head[x] = Tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*--树剖dfs--*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs1</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">	fa[p] = f;</span><br><span class="line">	Dep[p] = Dep[f] + <span class="number">1</span>;</span><br><span class="line">	Size[p] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == f) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">Podfs1</span>(v, p);</span><br><span class="line">		Size[p] += Size[v];</span><br><span class="line">		<span class="keyword">if</span> (Size[v] &gt; Size[Hson[p]]) Hson[p] = v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs2</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> top)</span> </span>&#123;</span><br><span class="line">	++DFNtot;</span><br><span class="line">	Top[p] = top;</span><br><span class="line">	seg[p] = DFNtot;</span><br><span class="line">	rev[DFNtot] = p;</span><br><span class="line">	<span class="keyword">if</span> (Hson[p])</span><br><span class="line">		<span class="built_in">Podfs2</span>(Hson[p], top);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == fa[p]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (Hson[p] != v) <span class="built_in">Podfs2</span>(v, v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*--线段树--*/</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Tree</span> &#123;</span><br><span class="line">	<span class="type">int</span> l, r, sum;</span><br><span class="line">	<span class="type">int</span> lazy;</span><br><span class="line">&#125; tree[<span class="number">4</span> * _];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lson</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;<span class="keyword">return</span> root &lt;&lt; <span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">rson</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;<span class="keyword">return</span> root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Push_Up</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;</span><br><span class="line">	tree[root].sum = (tree[<span class="built_in">lson</span>(root)].sum + tree[<span class="built_in">rson</span>(root)].sum) % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Push_Down</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (tree[root].lazy != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="type">int</span> num = tree[root].lazy;</span><br><span class="line">		tree[<span class="built_in">lson</span>(root)].sum = (tree[<span class="built_in">lson</span>(root)].sum + (tree[<span class="built_in">lson</span>(root)].r - tree[<span class="built_in">lson</span>(root)].l + <span class="number">1</span>) * num % P) % P;</span><br><span class="line">		tree[<span class="built_in">rson</span>(root)].sum = (tree[<span class="built_in">rson</span>(root)].sum + (tree[<span class="built_in">rson</span>(root)].r - tree[<span class="built_in">rson</span>(root)].l + <span class="number">1</span>) * num % P) % P;</span><br><span class="line">		tree[<span class="built_in">lson</span>(root)].lazy = (tree[<span class="built_in">lson</span>(root)].lazy + num) % P;</span><br><span class="line">		tree[<span class="built_in">rson</span>(root)].lazy = (tree[<span class="built_in">rson</span>(root)].lazy + num) % P;</span><br><span class="line">		tree[root].lazy = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Build</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> root)</span> </span>&#123;</span><br><span class="line">	tree[root].l = l;</span><br><span class="line">	tree[root].r = r;</span><br><span class="line">	<span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">		tree[root].sum = val[rev[l]] % P;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">Build</span>(l, mid, <span class="built_in">lson</span>(root));</span><br><span class="line">	<span class="built_in">Build</span>(mid + <span class="number">1</span>, r, <span class="built_in">rson</span>(root));</span><br><span class="line">	<span class="built_in">Push_Up</span>(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Change</span><span class="params">(<span class="type">int</span> root, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> L, <span class="type">int</span> R, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) &#123;</span><br><span class="line">		tree[root].sum += (r - l + <span class="number">1</span>) * num % P;</span><br><span class="line">		tree[root].sum %= P;</span><br><span class="line">		tree[root].lazy += num % P;</span><br><span class="line">		tree[root].lazy %= P;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">Push_Down</span>(root);</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= mid) </span><br><span class="line">		<span class="built_in">Change</span>(<span class="built_in">lson</span>(root), l, mid, L, R, num);</span><br><span class="line">	<span class="keyword">if</span> (mid &lt; R)</span><br><span class="line">		<span class="built_in">Change</span>(<span class="built_in">rson</span>(root), mid + <span class="number">1</span>, r, L, R, num);</span><br><span class="line">	<span class="built_in">Push_Up</span>(root);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Query</span><span class="params">(<span class="type">int</span> root, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> L, <span class="type">int</span> R)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (L &gt; r || R &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) </span><br><span class="line">		<span class="keyword">return</span> tree[root].sum % P;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">Push_Down</span>(root);</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= mid) &#123;</span><br><span class="line">		ans += <span class="built_in">Query</span>(<span class="built_in">lson</span>(root), l, mid, L, R) % P;</span><br><span class="line">		ans %= P;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (mid &lt; R) &#123;</span><br><span class="line">		ans += <span class="built_in">Query</span>(<span class="built_in">rson</span>(root), mid + <span class="number">1</span>, r, L, R) % P;</span><br><span class="line">		ans %= P;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*--LCA--*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">TChange</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (Top[u] != Top[v]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Dep[Top[u]] &gt; Dep[Top[v]]) &#123;</span><br><span class="line">			<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[u]], seg[u], num);</span><br><span class="line">			u = fa[Top[u]];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[v]], seg[v], num);</span><br><span class="line">			v = fa[Top[v]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (Dep[u] &gt; Dep[v]) <span class="built_in">swap</span>(u, v);</span><br><span class="line">	<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[u], seg[v], num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">TQuery</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (Top[u] != Top[v]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Dep[Top[u]] &gt; Dep[Top[v]]) &#123;</span><br><span class="line">			ans = ans + <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[u]], seg[u]) % P;</span><br><span class="line">			ans %= P;</span><br><span class="line">			u = fa[Top[u]];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			ans = ans + <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[v]], seg[v]) % P;</span><br><span class="line">			ans %= P;</span><br><span class="line">			v = fa[Top[v]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (Dep[u] &gt; Dep[v]) <span class="built_in">swap</span>(u, v);</span><br><span class="line">	ans = (ans + <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[u], seg[v]) % P) % P;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; N &gt;&gt; M &gt;&gt; R &gt;&gt; P;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++) cin &gt;&gt; val[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">		<span class="type">int</span> x, y;</span><br><span class="line">		cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">		<span class="built_in">add</span>(x, y);</span><br><span class="line">		<span class="built_in">add</span>(y, x);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">Podfs1</span>(R, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">Podfs2</span>(R, R);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">Build</span>(<span class="number">1</span>, DFNtot, <span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (M--) &#123;</span><br><span class="line">		<span class="type">int</span> k;</span><br><span class="line">		cin &gt;&gt; k;</span><br><span class="line">		<span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x, y, z;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;</span><br><span class="line">			<span class="built_in">TChange</span>(x, y, z);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x, y;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">			cout &lt;&lt; <span class="built_in">TQuery</span>(x, y) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">3</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x, z;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; z;</span><br><span class="line">			<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[x], seg[x] + Size[x] - <span class="number">1</span>, z);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">4</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x;</span><br><span class="line">			cin &gt;&gt; x;</span><br><span class="line">			cout &lt;&lt; <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[x], seg[x] + Size[x] - <span class="number">1</span>) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2023/01/25/%E5%9B%BD%E4%BA%A7%E7%B3%BB%E7%BB%9FDeepin20%E5%88%9D%E4%BD%93%E9%AA%8C/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/deepin.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/%E8%AE%B0%E5%BD%95/">
+                    记录
+                </a>
+            </div>
+            <h5>
+                <a href="/2023/01/25/%E5%9B%BD%E4%BA%A7%E7%B3%BB%E7%BB%9FDeepin20%E5%88%9D%E4%BD%93%E9%AA%8C/" class="trm-anima-link">
+                    国产系统Deepin20初体验
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/01/25</li>
+                <li>20:03</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2022/12/23/PHP%E7%8E%AF%E5%A2%83/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/php.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/%E8%AE%B0%E5%BD%95/">
+                    记录
+                </a>
+            </div>
+            <h5>
+                <a href="/2022/12/23/PHP%E7%8E%AF%E5%A2%83/" class="trm-anima-link">
+                    PHP环境
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/12/23</li>
+                <li>17:56</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2024</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">ACerKa1o</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.2
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item blog-run-long"></div>
+     
+
+    
+        <div class="trm-footer-item">
+            HOLA!
+        </div>
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn hidden-md" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <i class="iconfont fas fa-arrows-alt-h"></i>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.2.2"></script>
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+			<script src="/js/plugins/danmu.js?v=2.2.2"></script>
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=2.2.2"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>
