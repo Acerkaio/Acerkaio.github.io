@@ -789,7 +789,7 @@ html.is-animating .trm-swup-animation {
   color: var(--primary, #afb42b);
 }
 .trm-top-bar .container .trm-left-side .trm-logo-frame img {
-  height: 70px;
+  height: 60px;
   margin-right: 10px;
 }
 .trm-top-bar .container .trm-right-side {
@@ -3738,4 +3738,40 @@ pre .coffeescript .title {
 .trm-fixed-container.offset #trm-back-top {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+.trm-main-card {
+  opacity: 0.92;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.08) !important;
+}
+.trm-main-card:hover {
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.12) !important;
+}
+.trm-blog-categories.trm-scroll-animation.trm-active-el,
+.trm-card.trm-label.trm-label-light.text-center,
+.trm-card,
+.trm-footer-card.trm-scroll-animation.trm-active-el,
+.trm-timeline-content.more,
+blockquote,
+.trm-link-box.trm-scroll-animation.trm-p-20.trm-active-el {
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.08) !important;
+}
+.trm-blog-categories.trm-scroll-animation.trm-active-el:hover,
+.trm-card.trm-label.trm-label-light.text-center:hover,
+.trm-card:hover,
+.trm-footer-card.trm-scroll-animation.trm-active-el:hover,
+.trm-timeline-content.more:hover,
+blockquote:hover,
+.trm-link-box.trm-scroll-animation.trm-p-20.trm-active-el:hover {
+  box-shadow: 0 0px 50px rgba(0, 0, 0, 0.14) !important;
+}
+.trm-blog-card.trm-scroll-animation.trm-active-el {
+  box-shadow: 0 0px 40px rgba(0, 0, 0, 0.08) !important;
+}
+.trm-blog-card.trm-scroll-animation.trm-active-el:hover {
+  box-shadow: 0 7px 50px rgba(0, 0, 0, 0.14) !important;
+  transform: scale(1.01) translateY(-7px);
+}
+.trm-banner-content.trm-overlay {
+  opacity: 0.8;
 }
