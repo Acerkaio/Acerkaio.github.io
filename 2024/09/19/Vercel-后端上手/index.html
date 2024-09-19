@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="伊蕾娜！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AcerkaioBlog">
-<meta property="og:url" content="https://blog.acerkaio.top/page/2/index.html">
+<meta name="description" content="热知识: Vercel 支持后端，可以使用 Flask 语法 （ 准备工作: Flask  一个自己的域名  一个 Vercel 账号，并且绑定 Github   新建文件夹将文件夹放入以下文件:  requirements.txt  vercel.json  index.py   requirements.txt: 1234Flaskrequestspyjsonpyrandom  告诉 Verc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vercel 后端上手">
+<meta property="og:url" content="https://blog.acerkaio.top/2024/09/19/Vercel-%E5%90%8E%E7%AB%AF%E4%B8%8A%E6%89%8B/index.html">
 <meta property="og:site_name" content="AcerkaioBlog">
-<meta property="og:description" content="伊蕾娜！">
+<meta property="og:description" content="热知识: Vercel 支持后端，可以使用 Flask 语法 （ 准备工作: Flask  一个自己的域名  一个 Vercel 账号，并且绑定 Github   新建文件夹将文件夹放入以下文件:  requirements.txt  vercel.json  index.py   requirements.txt: 1234Flaskrequestspyjsonpyrandom  告诉 Verc">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-19T09:40:40.000Z">
+<meta property="article:modified_time" content="2024-09-19T09:56:21.257Z">
 <meta property="article:author" content="Acerkaio">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 
 
-<title >AcerkaioBlog</title>
+<title >Vercel 后端上手</title>
 
 <!-- Favicon -->
 
@@ -61,7 +64,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"blog.acerkaio.top","author":"Acerkaio","root":"/","typed_text":["an ordinary person."],"theme_version":"2.2.2","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"https://api.anyfan.top/count/?name=www.acerkaio.top&theme=rule34","icon16":"https://cdn.luogu.com.cn/upload/usericon/514850.png","icon32":"https://cdn.luogu.com.cn/upload/usericon/514850.png","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"加载失败..."},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"08/30/2022 00:00:00","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":true,"el":".trm-banner","avatar":true,"delayRange":5000,"speed":80},"notice_outdate":{"enable":true,"style":"flat","limit_day":365,"position":"top"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":false,"isHome":true,"postUpdate":"2024-09-19 17:56:55"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-09-19 17:56:21"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.2" id="trm-switch-style">
@@ -203,16 +206,14 @@
             <!-- top bar end -->
 
             <!-- body -->
-            <div class="trm-content-start">
+            
+<div class="trm-content-start">
     <!-- banner -->
     <div class="trm-banner">
     
-    <!-- banner video cover -->
-    <video autoplay="autoplay" loop muted playsinline webkit-playinginline class="trm-banner-cover">
-        <source src="https://cdn.jsdmirror.com/gh/Acerkaio/ImageHost/test/%E6%99%9A%E4%B8%8A.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-        Your browser does not support HTML5 video.
-    </video>
-    <!-- banner video cover end -->
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg">
+    <!-- banner cover end -->
     
 
     <!-- banner content -->
@@ -227,10 +228,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            Hola, Acerkaio here!
+                            Hola! This is a article about Python...
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            花径不曾缘客扫，<br>蓬门今始为君开。
+                            Vercel 后端上手
                         </h1>
 
                         
@@ -240,7 +241,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        page
+                                        2024
                                     </span>
                                 </li>
                             </ul>
@@ -354,118 +355,97 @@
             
             <div class="trm-page-content col-lg-8">
                 <div id="trm-content" class="trm-content">
-                    <!-- categories -->
-
-    <div class="row hidden-sm">
-        
-        
-        <div class="col-lg-6">
-            <!-- categories card -->
-<div class="trm-blog-categories trm-scroll-animation">
-    <h6>
-        记录
-        <span class="trm-number">
-            4
-        </span>
-    </h6>
-    <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-    <a href="/categories/%E8%AE%B0%E5%BD%95/." class="trm-label">
-        查看分类 
-        <i class="iconfont fas fa-arrow-right arrow-right"></i>
-    </a>
-</div>
-<!-- categories card end -->
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            09/19
         </div>
-        
-        <div class="col-lg-6">
-            <!-- categories card -->
-<div class="trm-blog-categories trm-scroll-animation">
-    <h6>
-        学习笔记
-        <span class="trm-number">
-            4
-        </span>
-    </h6>
-    <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-    <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/." class="trm-label">
-        查看分类 
-        <i class="iconfont fas fa-arrow-right arrow-right"></i>
-    </a>
-</div>
-<!-- categories card end -->
-        </div>
-        
     </div>
-
-<!-- categories end -->
-
-<!-- newest publications -->
-<div class="row">
-    
-        <div class="col-lg-12">
-            <!-- title -->
-            <h5 class="trm-title-with-divider">
-                最近发布 
-                <span data-number="01"></span>
-            </h5>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            17:40
         </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Acerkaio
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>热知识: Vercel 支持后端，可以使用 Flask 语法 （</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作:"></a>准备工作:</h2><ul>
+<li><p>Flask</p>
+</li>
+<li><p>一个自己的域名</p>
+</li>
+<li><p>一个 Vercel 账号，并且绑定 Github</p>
+</li>
+</ul>
+<h2 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h2><p>将文件夹放入以下文件:</p>
+<ul>
+<li><p>requirements.txt</p>
+</li>
+<li><p>vercel.json</p>
+</li>
+<li><p>index.py</p>
+</li>
+</ul>
+<p><code>requirements.txt</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flask</span><br><span class="line">requests</span><br><span class="line">pyjson</span><br><span class="line">pyrandom</span><br></pre></td></tr></table></figure>
+
+<p>告诉 Vercel 要引入的库，如果要引入其它库请自行搜索。</p>
+<p><code>vercel.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;builds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./index.py&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;use&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@vercel/python&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;routes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/(.*)&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;headers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;cache-control&quot;</span><span class="punctuation">:</span> <span class="string">&quot;no-cache, no-store, must-revalidate&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Access-Control-Allow-Origin&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dest&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>index.py</code> 以跳转到一个网站为例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask , request , jsonify, redirect, url_for</span><br><span class="line"><span class="keyword">import</span> requests , json , random</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&#x27;JSON_AS_ASCII&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&#x27;https://www.acerkaio.top/&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>More…</p>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
     
     
         <div class="col-lg-6">
     <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2022/08/30/%E5%85%B3%E4%BA%8ESimple-Luogu/" class="trm-cover-frame trm-anima-link">
+        <a href="/2024/01/14/%E6%89%AB%E6%8F%8F%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="trm-cover-frame trm-anima-link">
             
             
-                <img alt="cover" class="no-fancybox" src="/img/simple-luogu.jpg">
+                <img alt="cover" class="no-fancybox" src="/img/tj.jpg">
             
         </a>
         
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E5%88%9B%E4%BD%9C/">
-                    创作
+                <a href=" /categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                    学习笔记
                 </a>
             </div>
             <h5>
-                <a href="/2022/08/30/%E5%85%B3%E4%BA%8ESimple-Luogu/" class="trm-anima-link">
-                    关于Simple-Luogu
+                <a href="/2024/01/14/%E6%89%AB%E6%8F%8F%E7%BA%BF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="trm-anima-link">
+                    扫描线学习笔记
                 </a>
             </h5>
             <div class="trm-divider trm-mb-20 trm-mt-20"></div>
             <ul class="trm-card-data trm-label">
-                <li>22/08/30</li>
-                <li>18:18</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2022/08/30/hello-world/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/630df91e16f2c2beb115db40.jpg">
-            
-        </a>
-        
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" #.">
-                    未分类
-                </a>
-            </div>
-            <h5>
-                <a href="/2022/08/30/hello-world/" class="trm-anima-link">
-                    Hello World
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>22/08/30</li>
-                <li>00:00</li>
+                <li>24/01/14</li>
+                <li>21:45</li>
                 
                 
             </ul>
@@ -474,12 +454,9 @@
 </div>
     
 </div>
-<!-- newest publications end -->
 
+    
 
-    <div class="trm-pagination">
-        <a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </div>
 
 
                     <div class="trm-divider footer-divider"></div>
@@ -536,6 +513,10 @@
 <div class="trm-fixed-container">
     
     
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
     
         <div class="trm-fixed-btn hidden-md" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
             <i class="iconfont fas fa-arrows-alt-h"></i>
@@ -573,6 +554,10 @@
     
 
     <!-- 评论插件 -->
+    
+        
+
+        
     
 
 		

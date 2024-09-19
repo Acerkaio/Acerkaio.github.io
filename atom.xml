@@ -6,7 +6,7 @@
   <link href="https://blog.acerkaio.top/atom.xml" rel="self"/>
   
   <link href="https://blog.acerkaio.top/"/>
-  <updated>2024-07-12T09:39:24.227Z</updated>
+  <updated>2024-09-19T09:56:21.257Z</updated>
   <id>https://blog.acerkaio.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vercel 后端上手</title>
+    <link href="https://blog.acerkaio.top/2024/09/19/Vercel-%E5%90%8E%E7%AB%AF%E4%B8%8A%E6%89%8B/"/>
+    <id>https://blog.acerkaio.top/2024/09/19/Vercel-%E5%90%8E%E7%AB%AF%E4%B8%8A%E6%89%8B/</id>
+    <published>2024-09-19T09:40:40.000Z</published>
+    <updated>2024-09-19T09:56:21.257Z</updated>
+    
+    <content type="html"><![CDATA[<p>热知识: Vercel 支持后端，可以使用 Flask 语法 （</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作:"></a>准备工作:</h2><ul><li><p>Flask</p></li><li><p>一个自己的域名</p></li><li><p>一个 Vercel 账号，并且绑定 Github</p></li></ul><h2 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h2><p>将文件夹放入以下文件:</p><ul><li><p>requirements.txt</p></li><li><p>vercel.json</p></li><li><p>index.py</p></li></ul><p><code>requirements.txt</code>:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flask</span><br><span class="line">requests</span><br><span class="line">pyjson</span><br><span class="line">pyrandom</span><br></pre></td></tr></table></figure><p>告诉 Vercel 要引入的库，如果要引入其它库请自行搜索。</p><p><code>vercel.json</code></p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;builds&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./index.py&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;use&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@vercel/python&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;routes&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;src&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/(.*)&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;headers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;cache-control&quot;</span><span class="punctuation">:</span> <span class="string">&quot;no-cache, no-store, must-revalidate&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;Access-Control-Allow-Origin&quot;</span><span class="punctuation">:</span> <span class="string">&quot;*&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dest&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><p><code>index.py</code> 以跳转到一个网站为例</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask , request , jsonify, redirect, url_for</span><br><span class="line"><span class="keyword">import</span> requests , json , random</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&#x27;JSON_AS_ASCII&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&#x27;https://www.acerkaio.top/&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>More…</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;热知识: Vercel 支持后端，可以使用 Flask 语法 （&lt;/p&gt;
+&lt;h2 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作:&quot;&gt;&lt;/a&gt;准备工作:&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Flask&lt;/p&gt;
+&lt;</summary>
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://blog.acerkaio.top/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习笔记" scheme="https://blog.acerkaio.top/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>扫描线学习笔记</title>
