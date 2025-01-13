@@ -15,7 +15,7 @@
 <meta property="og:description" content="热知识: Vercel 支持后端，可以使用 Flask 语法 （ 准备工作: Flask  一个自己的域名  一个 Vercel 账号，并且绑定 Github   新建文件夹将文件夹放入以下文件:  requirements.txt  vercel.json  index.py   requirements.txt: 1234Flaskrequestspyjsonpyrandom  告诉 Verc">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-19T09:40:40.000Z">
-<meta property="article:modified_time" content="2024-09-19T09:58:39.213Z">
+<meta property="article:modified_time" content="2025-01-13T03:15:58.091Z">
 <meta property="article:author" content="Acerkaio">
 <meta property="article:tag" content="记录">
 <meta name="twitter:card" content="summary">
@@ -50,6 +50,8 @@
 
     
     
+<link rel="stylesheet" href="https://unpkg.com/katex@latest/dist/katex.min.css">
+
 
 
 
@@ -63,8 +65,8 @@
 
 
 <!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"blog.acerkaio.top","author":"Acerkaio","root":"/","typed_text":["an ordinary person."],"theme_version":"2.2.2","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"https://api.anyfan.top/count/?name=www.acerkaio.top&theme=rule34","icon16":"https://cdn.luogu.com.cn/upload/usericon/514850.png","icon32":"https://cdn.luogu.com.cn/upload/usericon/514850.png","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"加载失败..."},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"08/30/2022 00:00:00","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":true,"el":".trm-banner","avatar":true,"delayRange":5000,"speed":80},"notice_outdate":{"enable":true,"style":"flat","limit_day":365,"position":"top"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2024-09-19 17:58:39"};</script>
+<script>window.ASYNC_CONFIG = {"hostname":"blog.acerkaio.top","author":"Acerkaio","root":"/","typed_text":["an ordinary person."],"theme_version":"2.2.2","theme":{"switch":true,"default":"style-dark"},"favicon":{"logo":"https://api.anyfan.top/count/?name=www.acerkaio.top&theme=rule34","icon16":"https://cdn.luogu.com.cn/upload/usericon/514850.png","icon32":"https://cdn.luogu.com.cn/upload/usericon/514850.png","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"加载失败..."},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"08/30/2022 00:00:00","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":true,"el":".trm-banner","avatar":true,"delayRange":5000,"speed":80},"notice_outdate":{"enable":true,"style":"flat","limit_day":365,"position":"top"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-01-13 11:15:58"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.2" id="trm-switch-style">
@@ -405,8 +407,7 @@
 <p><code>index.py</code> 以跳转到一个网站为例</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask , request , jsonify, redirect, url_for</span><br><span class="line"><span class="keyword">import</span> requests , json , random</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&#x27;JSON_AS_ASCII&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&#x27;https://www.acerkaio.top/&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>More…</p>
-
+<h2 id="实现随机图"><a href="#实现随机图" class="headerlink" title="实现随机图"></a>实现随机图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask , request , jsonify, redirect, url_for</span><br><span class="line"><span class="keyword">import</span> requests , json , random</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">&#x27;JSON_AS_ASCII&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">root</span>():</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&#x27;https://pixiv.acerkaio.top/&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/rd&#x27;</span>,methods=[<span class="string">&quot;GET&quot;</span>]</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rdom</span>():</span><br><span class="line"></span><br><span class="line">    url = <span class="string">f&#x27;https://data.acerkaio.top/elaina.json&#x27;</span> <span class="comment">#改成你的 url</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    header = &#123;<span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) &#x27;</span></span><br><span class="line">                            <span class="string">&#x27;Chrome/112.0.0.0 Safari/537.36&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;cookie&#x27;</span>: <span class="string">&#x27;__yjs_duid=1_b1ac9fc87dce4de5552d7cf0924fb4981686228951567; u=b0281776fd75d3eefeb3562b2a5e6534; &#x27;</span></span><br><span class="line">                        <span class="string">&#x27;__bid_n=1889b14047a51b2b754207; &#x27;</span></span><br><span class="line">                        <span class="string">&#x27;FPTOKEN=qU+ieOMqkW6y6DlsOZ+D/T&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;+SCY6yS3dYvGXKibFoGBijKuUuSbc3ACFDzjlcC18wuDjNLENrw4ktAFAqnl3Akg492Lr4fbvNrkdJ&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;/ZQrluIdklkNDAKYnPrpcbe2H9y7AtX+/b+FCTkSTNv5+qB3OtQQ3BXXsEen72oEoAfK+H6&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;/u6ltZPdyHttJBJiXEDDS3EiUVt+S2w+8ozXENWbNt/AHeCgNUMmdeDinAKCR+nQSGK/twOoTLOU/nxBeSAazg&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;+wu5K8ooRmW00Bk6XAqC4Cb829XR3UinZHRsJxt7q9biKzYQh&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;+Yu5s6EHypKwpA6RPtVAC1axxbxza0l5LJ5hX8IxJXDaQ6srFoEzQ92jM0rmDynp+gT&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;+3qNfEtB2PjkURvmRghGUn8wOcUUKPOqg==|mfg5DyAulnBuIm/fNO5JCrEm9g5yXrV1etiaV0jqQEw=|10&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;|dcfdbf664758c47995de31b90def5ca5; PHPSESSID=18397defd82b1b3ef009662dc77fe210; &#x27;</span></span><br><span class="line">                        <span class="string">&#x27;Hm_lvt_de3f6fd28ec4ac19170f18e2a8777593=1686322028,1686360205; &#x27;</span></span><br><span class="line">                        <span class="string">&#x27;history=cid%3A2455%2Ccid%3A2476%2Ccid%3A5474%2Ccid%3A5475%2Ccid%3A2814%2Cbid%3A3667; &#x27;</span></span><br><span class="line">                        <span class="string">&#x27;Hm_lpvt_de3f6fd28ec4ac19170f18e2a8777593=1686360427&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">    response = requests.get(url, headers=header)</span><br><span class="line">    text = response.text</span><br><span class="line">    res = json.loads(text)</span><br><span class="line">    number = random.randint(<span class="number">0</span>,(<span class="built_in">len</span>(res) - <span class="number">1</span>))</span><br><span class="line">    result = res[number]</span><br><span class="line">    fina_res = json.dumps(result,ensure_ascii=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> json.loads(fina_res)</span><br></pre></td></tr></table></figure>
 </article>
     
     
@@ -420,6 +421,37 @@
             <span data-number="02"></span>
         </h5>
     </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2025/01/13/%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8E%E7%A1%AC%E4%BB%B6/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/%E8%AE%B0%E5%BD%95/">
+                    记录
+                </a>
+            </div>
+            <h5>
+                <a href="/2025/01/13/%E4%B8%80%E4%BA%9B%E5%85%B3%E4%BA%8E%E7%A1%AC%E4%BB%B6/" class="trm-anima-link">
+                    一些关于硬件
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>25/01/13</li>
+                <li>11:28</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
     
     
         <div class="col-lg-6">
@@ -468,7 +500,7 @@
 
     
         <div class="trm-footer-item">
-            <span>© 2022- 2024</span>
+            <span>© 2022- 2025</span>
             <span class="footer-separator"data-separator=" · "></span>
             <span class="trm-accent-color">ACerKa1o</span>
         </div>
@@ -539,6 +571,8 @@
 
 
     
+<script src="https://unpkg.com/swup@2.0.19/dist/swup.min.js"></script>
+
     
 <script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
@@ -551,6 +585,29 @@
     
 
     <!-- 数学公式 -->
+    
+        
+<script src="https://unpkg.com/katex@latest/dist/katex.min.js" data-swup-reload-script></script>
+
+        
+            
+<script src="https://unpkg.com/katex@latest/dist/contrib/copy-tex.min.js" data-swup-reload-script></script>
+
+        
+        
+<script src="https://unpkg.com/katex@latest/dist/contrib/auto-render.min.js" data-swup-reload-script></script>
+
+        <script data-swup-reload-script>
+              window.renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true },
+                ],
+                ...{},
+            })
+        </script>
     
 
     <!-- 评论插件 -->
