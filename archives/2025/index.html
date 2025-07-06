@@ -268,7 +268,7 @@
 		<div class="input-group-prepend">
 			<span class="input-group-text"><i class="fa fa-search"></i></span>
 		</div>
-		<input id="local-search-input" class="form-control" placeholder="搜索什么..." type="text"  autocomplete="off" data-search.path="search.xml" data-config.root="/">
+		<input id="local-search-input" class="form-control" placeholder="阁下想搜些啥..." type="text"  autocomplete="off" data-search.path="search.xml" data-config.root="/">
 	</div>
 	<div id="local-search-result"></div>
 </div>
@@ -842,14 +842,45 @@ CPU
 
 					<footer id="footer" class="site-footer card shadow-sm border-0">
 						<div > <span>博客已萌萌哒运行</span> <span id='NOWTIME'></span> <span>天  (∠・ω< )⌒★</span> </div> <script> function calculateDays() { const startDate = new Date('2022-08-30T00:00:00'); const currentDate = new Date(); const timeDiff = currentDate - startDate; const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); return days; } function updateCounter() { const days = calculateDays(); document.getElementById('NOWTIME').textContent = days; } updateCounter(); window.addEventListener('DOMContentLoaded', updateCounter); </script>
-						<div>Theme <a target="_blank" rel="noopener" href="https://github.com/solstice23/hexo-theme-argon"><strong>Argon</strong></a> | Powered by Hexo</div>
 						<span id="busuanzi_container_site_uv">
-							本站访客数 <span id="busuanzi_value_site_uv"></span> 人次
+							您是第 <span id="viewerNumber">加载中...</span> 个访问这个小站的网络链接者 w
 						</span>
+						<div>Theme <a target="_blank" rel="noopener" href="https://github.com/solstice23/hexo-theme-argon"><strong>Argon</strong></a> | Powered by Hexo</div>
+						
 					</footer>
 				</main>
 			</div>
 		</div>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// 获取显示访问次数的元素
+				const viewerNumberElement = document.getElementById('viewerNumber');
+				
+				// 检查元素是否存在
+				if (!viewerNumberElement) {
+					console.error('Element with id "viewerNumber" not found');
+					return;
+				}
+				
+				// 调用计数器API
+				fetch('http://counter.acerkaio.top/homepage')
+					.then(response => {
+					if (!response.ok) {
+						throw new Error(`Network response was not ok (${response.status})`);
+					}
+					return response.json();
+					})
+					.then(data => {
+					// 更新页面显示
+					viewerNumberElement.textContent = data.count;
+					})
+					.catch(error => {
+					console.error('Error fetching visitor count:', error);
+					// 错误处理：显示默认值或错误信息
+					viewerNumberElement.textContent = '∞';
+					});
+			});
+		</script>
 		
 <script src="/argontheme.js"></script>
 
