@@ -20,7 +20,7 @@
 	<meta name="theme-color-rgb" content="94,114,228">
 	<meta name="theme-color-origin" content="#5e72e4">
 	<meta name="argon-enable-custom-theme-color" content="false">
-	<meta name="theme-card-radius" content="4">
+	<meta name="theme-card-radius" content="6">
 	<meta name="theme-version" content="1.0.2">
 	<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
@@ -174,7 +174,7 @@
 </style>
 <style id="theme_cardradius_css">
 	:root{
-		--card-radius: 4px;
+		--card-radius: 6px;
 	}
 </style>
 
@@ -457,7 +457,7 @@
 				<span class="leftbar-banner-title text-white">Shawn 的闲话集</span>
 				
 				
-					<span class="leftbar-banner-subtitle text-white"><span class='hitokoto'></span></span>
+					<span class="leftbar-banner-subtitle text-white">どうしたら戻れるの？私にできることなら何でもするから！</span>
 				
 			</div>
 			
@@ -769,44 +769,14 @@ CPU
 
 					<footer id="footer" class="site-footer card shadow-sm border-0">
 						<div > <span>博客已萌萌哒运行</span> <span id='NOWTIME'></span> <span>天  (∠・ω< )⌒★</span> </div> <script> function calculateDays() { const startDate = new Date('2022-08-30T00:00:00'); const currentDate = new Date(); const timeDiff = currentDate - startDate; const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)); return days; } function updateCounter() { const days = calculateDays(); document.getElementById('NOWTIME').textContent = days; } updateCounter(); window.addEventListener('DOMContentLoaded', updateCounter); </script>
-						<span id="busuanzi_container_site_uv">
-							您是第 <span id="viewerNumber">加载中...</span> 个访问这个小站的网络链接者 w
-						</span>
 						<div>Theme <a target="_blank" rel="noopener" href="https://github.com/solstice23/hexo-theme-argon"><strong>Argon</strong></a> | Powered by Hexo</div>
+						<span>>_<</span>
 						
 					</footer>
 				</main>
 			</div>
 		</div>
 		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				// 获取显示访问次数的元素
-				const viewerNumberElement = document.getElementById('viewerNumber');
-				
-				// 检查元素是否存在
-				if (!viewerNumberElement) {
-					console.error('Element with id "viewerNumber" not found');
-					return;
-				}
-				
-				// 调用计数器API
-				fetch('http://counter.acerkaio.top/homepage')
-					.then(response => {
-					if (!response.ok) {
-						throw new Error(`Network response was not ok (${response.status})`);
-					}
-					return response.json();
-					})
-					.then(data => {
-					// 更新页面显示
-					viewerNumberElement.textContent = data.count;
-					})
-					.catch(error => {
-					console.error('Error fetching visitor count:', error);
-					// 错误处理：显示默认值或错误信息
-					viewerNumberElement.textContent = '∞';
-					});
-			});
 		</script>
 		
 <script src="/argontheme.js"></script>
