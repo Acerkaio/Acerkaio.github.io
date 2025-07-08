@@ -943,10 +943,172 @@
 <p>具体地，对于每个整块，拿一个双指针 $l,r$ 并记录每个数字在这个区间的次数，每个数字的历史最大，所以用了 $\text{O}(\sqrt{n})$ 做完一个整块，总共有 $\text{O}(\sqrt{n})$ 个块，做完就是 $O(n)$ 的，然后每次做完一个整块，我们暴力 $O(q)$ 枚举所有包含当前块的询问去贡献。这就是一个平衡，我们最后是 $O(n+q\sqrt{n})$ 完成了整块的贡献。</p>
 <p>对于散块，我们枚举 $k$，假设有一个新的序列 $f_i$，我们在 $f_i$ 上激活所有 $[a_i&#x3D;k]$，也就是 $f_i&#x3D;[a_i&#x3D;k]$。因为是散块，外面肯定是暴力枚举的 $O(\sqrt{n})$ 枚举数字又有一个 $O(n)$ 了，所以我们要做到 $O(1)$ 查询一个区间内 $[a_i&#x3D;k]$ 的个数，这里就用到对序列的分块了，分块是可以做到 $O(\sqrt{n})$ 修改 $O(1)$ 查询前缀和的，修改在每次枚举的时候做，所以就是 $O(n\sqrt{n})$ 的了。</p>
 <p>卡常前的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> reg register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rep(i,a,b) for(reg int i=a;i&lt;=b;++i)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> drep(i,a,b) for(reg int i=a;i&gt;=b;--i)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a,b) ((a)&gt;(b)?(b):(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a,b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> Pqry(x) (x==0?x:h[Srev[x]-1]+f[x])</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ins insert</span></span><br><span class="line"><span class="keyword">namespace</span> Fread &#123;</span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> SIZE=<span class="number">1</span>&lt;&lt;<span class="number">21</span>;<span class="type">char</span> buf[SIZE],*S,*T;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">char</span> <span class="title">getchar</span><span class="params">()</span> </span>&#123;<span class="keyword">if</span>(S==T)&#123;T=(S=buf)+<span class="built_in">fread</span>(buf,<span class="number">1</span>,SIZE,stdin);<span class="keyword">if</span>(S==T)<span class="keyword">return</span> <span class="string">&#x27;\n&#x27;</span>;&#125;<span class="keyword">return</span> *S++;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Fwrite &#123;</span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> SIZE=<span class="number">1</span>&lt;&lt;<span class="number">21</span>;</span><br><span class="line">	<span class="type">char</span> buf[SIZE],*S=buf,*T=buf+SIZE;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">flush</span><span class="params">()</span></span>&#123;<span class="built_in">fwrite</span>(buf,<span class="number">1</span>,S-buf,stdout);S=buf;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">putchar</span><span class="params">(<span class="type">char</span> c)</span></span>&#123;*S++=c;<span class="keyword">if</span>(S==T)<span class="built_in">flush</span>();&#125;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">POPOSSIBLE</span>&#123;~<span class="built_in">POPOSSIBLE</span>()&#123;<span class="built_in">flush</span>();&#125;&#125;ztr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> getchar Fread :: getchar</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> putchar Fwrite :: putchar</span></span><br><span class="line"><span class="keyword">namespace</span> Fastio&#123;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Reader</span>&#123;</span><br><span class="line">	    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    	Reader&amp; <span class="keyword">operator</span> &gt;&gt; (T&amp; x) &#123;</span><br><span class="line">        	<span class="type">char</span> c=<span class="built_in">getchar</span>();T f=<span class="number">1</span>;</span><br><span class="line">        	<span class="keyword">while</span>(c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>)&#123;<span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;x=<span class="number">0</span>;</span><br><span class="line">        	<span class="keyword">while</span>(c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;x=x*<span class="number">10</span>+(c-<span class="string">&#x27;0&#x27;</span>);c=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">	        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">	    <span class="built_in">Reader</span>()&#123;&#125;</span><br><span class="line">	&#125;cin;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Writer</span>&#123;</span><br><span class="line">	    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">	    Writer&amp; <span class="keyword">operator</span> &lt;&lt; (T x) &#123;</span><br><span class="line">	        <span class="keyword">if</span>(x==<span class="number">0</span>)&#123;<span class="built_in">putchar</span>(<span class="string">&#x27;0&#x27;</span>);<span class="keyword">return</span> *<span class="keyword">this</span>;&#125;</span><br><span class="line">	        <span class="keyword">if</span>(x&lt;<span class="number">0</span>)&#123;<span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>);x=-x;&#125;</span><br><span class="line">	        <span class="type">static</span> <span class="type">int</span> sta[<span class="number">45</span>];<span class="type">int</span> top=<span class="number">0</span>;</span><br><span class="line">	        <span class="keyword">while</span>(x)&#123;sta[++top]=x%<span class="number">10</span>;x/=<span class="number">10</span>;&#125;</span><br><span class="line">	        <span class="keyword">while</span>(top)&#123;<span class="built_in">putchar</span>(sta[top]+<span class="string">&#x27;0&#x27;</span>);--top;&#125;</span><br><span class="line">	        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	Writer&amp; <span class="keyword">operator</span> &lt;&lt; (<span class="type">char</span> c) &#123;<span class="built_in">putchar</span>(c);<span class="keyword">return</span> *<span class="keyword">this</span>;&#125;</span><br><span class="line">    	<span class="built_in">Writer</span>()&#123;&#125;</span><br><span class="line">	&#125;cout;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> cin Fastio :: cin</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> cout Fastio :: cout</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">2e5</span><span class="number">+10</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">chmax</span><span class="params">(reg <span class="type">int</span> &amp;x,reg <span class="type">int</span> y)</span></span>&#123;<span class="keyword">if</span>(x&lt;y)x=y;&#125;</span><br><span class="line"><span class="type">int</span> n,m,q;</span><br><span class="line"><span class="type">int</span> a[N];</span><br><span class="line"><span class="type">int</span> t[N],h[N],f[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">OP</span>&#123;</span><br><span class="line">    <span class="type">int</span> l,r; </span><br><span class="line">&#125;it[N]; </span><br><span class="line"><span class="type">const</span> <span class="type">int</span> intervalB=<span class="number">600</span>,sequentialB=<span class="number">430</span>,ICOST=N/intervalB<span class="number">+10</span>,SCOST=N/sequentialB<span class="number">+10</span>;</span><br><span class="line"><span class="type">int</span> Irev[N],Il[ICOST],Icnt=<span class="number">0</span>; </span><br><span class="line"><span class="type">int</span> Srev[N],Sl[SCOST],Scnt=<span class="number">0</span>; </span><br><span class="line">std::vector&lt;<span class="type">int</span>&gt;F[N],T[N];</span><br><span class="line"><span class="type">int</span> ans[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">QUETY</span>&#123;</span><br><span class="line">    <span class="type">int</span> l,r,x;</span><br><span class="line">&#125;Q[N];</span><br><span class="line"><span class="type">int</span> L,R,tmp,now,rmx,tcnt;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m&gt;&gt;q;</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,n)cin&gt;&gt;a[i],F[a[i]].<span class="built_in">pb</span>(i);</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,m)cin&gt;&gt;it[i].l&gt;&gt;it[i].r;</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,q)cin&gt;&gt;Q[i].l&gt;&gt;Q[i].r&gt;&gt;Q[i].x,T[Q[i].x].<span class="built_in">pb</span>(i);</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">        now=(i<span class="number">-1</span>)/intervalB<span class="number">+1</span>;Icnt=Irev[i]=now;</span><br><span class="line">        <span class="keyword">if</span>(!Il[now])Il[now]=i;</span><br><span class="line">    &#125;</span><br><span class="line">	Il[Icnt<span class="number">+1</span>]=m<span class="number">+1</span>;</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">        now=(i<span class="number">-1</span>)/sequentialB<span class="number">+1</span>;Scnt=Srev[i]=now;</span><br><span class="line">        <span class="keyword">if</span>(!Sl[now])Sl[now]=i;</span><br><span class="line">    &#125;</span><br><span class="line">	Sl[Scnt<span class="number">+1</span>]=n<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(reg <span class="type">int</span> k=<span class="number">1</span>;k&lt;=Icnt;++k)&#123;</span><br><span class="line">		<span class="built_in">rep</span>(i,Il[k],Il[k<span class="number">+1</span>]<span class="number">-1</span>)h[i]=i;</span><br><span class="line">		std::<span class="built_in">sort</span>(h+Il[k],h+Il[k<span class="number">+1</span>],[](<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y)&#123;<span class="keyword">return</span> it[x].l==it[y].l?it[x].r&gt;it[y].r:it[x].l&lt;it[y].l;&#125;);</span><br><span class="line">		rmx=tcnt=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">rep</span>(i,Il[k],Il[k<span class="number">+1</span>]<span class="number">-1</span>)<span class="keyword">if</span>(it[h[i]].r&gt;rmx)rmx=it[h[i]].r,f[++tcnt]=h[i];</span><br><span class="line">		<span class="built_in">rep</span>(i,<span class="number">1</span>,n)h[i]=t[i]=<span class="number">0</span>;</span><br><span class="line">		L=<span class="number">1</span>,R=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">rep</span>(i,<span class="number">1</span>,tcnt)&#123;</span><br><span class="line">			<span class="keyword">while</span>(L&lt;it[f[i]].l)t[a[L++]]--;</span><br><span class="line">			<span class="keyword">while</span>(R&lt;it[f[i]].r)t[a[++R]]++,<span class="built_in">chmax</span>(h[a[R]],t[a[R]]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">rep</span>(i,<span class="number">1</span>,q)<span class="keyword">if</span>(Q[i].l&lt;=Il[k]&amp;&amp;Il[k<span class="number">+1</span>]<span class="number">-1</span>&lt;=Q[i].r)<span class="built_in">chmax</span>(ans[i],h[Q[i].x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,n)h[i]=f[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">rep</span>(k,<span class="number">1</span>,n)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it:F[k])&#123;</span><br><span class="line">			<span class="built_in">rep</span>(i,it,Sl[Srev[it]<span class="number">+1</span>]<span class="number">-1</span>)f[i]+=<span class="number">1</span>;</span><br><span class="line">			<span class="built_in">rep</span>(i,Srev[it],Scnt)h[i]+=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> qid:T[k])&#123;</span><br><span class="line">            L=Q[qid].l,R=Q[qid].r,tmp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(Irev[L]<span class="number">+1</span>&gt;=Irev[R])&#123;</span><br><span class="line">                <span class="built_in">rep</span>(i,L,R)<span class="built_in">chmax</span>(tmp,<span class="built_in">Pqry</span>(it[i].r)-<span class="built_in">Pqry</span>(it[i].l<span class="number">-1</span>));</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">rep</span>(i,L,Il[Irev[L]<span class="number">+1</span>]<span class="number">-1</span>)<span class="built_in">chmax</span>(tmp,<span class="built_in">Pqry</span>(it[i].r)-<span class="built_in">Pqry</span>(it[i].l<span class="number">-1</span>));</span><br><span class="line">                <span class="built_in">rep</span>(i,Il[Irev[R]],R)<span class="built_in">chmax</span>(tmp,<span class="built_in">Pqry</span>(it[i].r)-<span class="built_in">Pqry</span>(it[i].l<span class="number">-1</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">chmax</span>(ans[qid],tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> it:F[k])&#123;</span><br><span class="line">			<span class="built_in">rep</span>(i,it,Sl[Srev[it]<span class="number">+1</span>]<span class="number">-1</span>)f[i]-=<span class="number">1</span>;</span><br><span class="line">			<span class="built_in">rep</span>(i,Srev[it],Scnt)h[i]-=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">rep</span>(i,<span class="number">1</span>,q)cout&lt;&lt;ans[i]&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;time.h&gt;
+#include &lt;iostream&gt;
+#define reg register
+#define rep(i,a,b) for(reg int i=a;i&lt;=b;++i)
+#define drep(i,a,b) for(reg int i=a;i&gt;=b;--i)
+#define min(a,b) ((a)&gt;(b)?(b):(a))
+#define max(a,b) ((a)&gt;(b)?(a):(b))
+#define Pqry(x) (x==0?x:h[Srev[x]-1]+f[x])
+#define pb emplace_back
+#define ins insert
+namespace Fread &#123;
+	const int SIZE=1&lt;&lt;21;char buf[SIZE],*S,*T;
+	inline char getchar() &#123;if(S==T)&#123;T=(S=buf)+fread(buf,1,SIZE,stdin);if(S==T)return &#39;\n&#39;;&#125;return *S++;&#125;
+&#125;
+namespace Fwrite &#123;
+	const int SIZE=1&lt;&lt;21;
+	char buf[SIZE],*S=buf,*T=buf+SIZE;
+	inline void flush()&#123;fwrite(buf,1,S-buf,stdout);S=buf;&#125;
+	inline void putchar(char c)&#123;*S++=c;if(S==T)flush();&#125;
+	struct POPOSSIBLE&#123;~POPOSSIBLE()&#123;flush();&#125;&#125;ztr;
+&#125;
+#define getchar Fread :: getchar
+#define putchar Fwrite :: putchar
+namespace Fastio&#123;
+	struct Reader&#123;
+	    template&lt;typename T&gt;
+    	Reader&amp; operator &gt;&gt; (T&amp; x) &#123;
+        	char c=getchar();T f=1;
+        	while(c&lt;&#39;0&#39;||c&gt;&#39;9&#39;)&#123;if(c==&#39;-&#39;)f=-1;c=getchar();&#125;x=0;
+        	while(c&gt;=&#39;0&#39;&amp;&amp;c&lt;=&#39;9&#39;)&#123;x=x*10+(c-&#39;0&#39;);c=getchar();&#125;x*=f;
+	        return *this;
+    	&#125;
+	    Reader()&#123;&#125;
+	&#125;cin;
+	struct Writer&#123;
+	    template&lt;typename T&gt;
+	    Writer&amp; operator &lt;&lt; (T x) &#123;
+	        if(x==0)&#123;putchar(&#39;0&#39;);return *this;&#125;
+	        if(x&lt;0)&#123;putchar(&#39;-&#39;);x=-x;&#125;
+	        static int sta[45];int top=0;
+	        while(x)&#123;sta[++top]=x%10;x/=10;&#125;
+	        while(top)&#123;putchar(sta[top]+&#39;0&#39;);--top;&#125;
+	        return *this;
+    	&#125;
+    	Writer&amp; operator &lt;&lt; (char c) &#123;putchar(c);return *this;&#125;
+    	Writer()&#123;&#125;
+	&#125;cout;
+&#125;
+#define cin Fastio :: cin
+#define cout Fastio :: cout
+const int N=2e5+10;
+inline void chmax(reg int &amp;x,reg int y)&#123;if(x&lt;y)x=y;&#125;
+int n,m,q;
+int a[N];
+int t[N],h[N],f[N];
+struct OP&#123;
+    int l,r; 
+&#125;it[N]; 
+const int intervalB=600,sequentialB=430,ICOST=N/intervalB+10,SCOST=N/sequentialB+10;
+int Irev[N],Il[ICOST],Icnt=0; 
+int Srev[N],Sl[SCOST],Scnt=0; 
+std::vector&lt;int&gt;F[N],T[N];
+int ans[N];
+struct QUETY&#123;
+    int l,r,x;
+&#125;Q[N];
+int L,R,tmp,now,rmx,tcnt;
+signed main()&#123;
+	cin&gt;&gt;n&gt;&gt;m&gt;&gt;q;
+    rep(i,1,n)cin&gt;&gt;a[i],F[a[i]].pb(i);
+    rep(i,1,m)cin&gt;&gt;it[i].l&gt;&gt;it[i].r;
+    rep(i,1,q)cin&gt;&gt;Q[i].l&gt;&gt;Q[i].r&gt;&gt;Q[i].x,T[Q[i].x].pb(i);
+    rep(i,1,m)&#123;
+        now=(i-1)/intervalB+1;Icnt=Irev[i]=now;
+        if(!Il[now])Il[now]=i;
+    &#125;
+	Il[Icnt+1]=m+1;
+    rep(i,1,n)&#123;
+        now=(i-1)/sequentialB+1;Scnt=Srev[i]=now;
+        if(!Sl[now])Sl[now]=i;
+    &#125;
+	Sl[Scnt+1]=n+1;
+    for(reg int k=1;k&lt;=Icnt;++k)&#123;
+		rep(i,Il[k],Il[k+1]-1)h[i]=i;
+		std::sort(h+Il[k],h+Il[k+1],[](int &amp;x,int &amp;y)&#123;return it[x].l==it[y].l?it[x].r&gt;it[y].r:it[x].l&lt;it[y].l;&#125;);
+		rmx=tcnt=0;
+		rep(i,Il[k],Il[k+1]-1)if(it[h[i]].r&gt;rmx)rmx=it[h[i]].r,f[++tcnt]=h[i];
+		rep(i,1,n)h[i]=t[i]=0;
+		L=1,R=0;
+		rep(i,1,tcnt)&#123;
+			while(L&lt;it[f[i]].l)t[a[L++]]--;
+			while(R&lt;it[f[i]].r)t[a[++R]]++,chmax(h[a[R]],t[a[R]]);
+		&#125;
+		rep(i,1,q)if(Q[i].l&lt;=Il[k]&amp;&amp;Il[k+1]-1&lt;=Q[i].r)chmax(ans[i],h[Q[i].x]);
+    &#125;
+    rep(i,1,n)h[i]=f[i]=0;
+    rep(k,1,n)&#123;
+        for(auto it:F[k])&#123;
+			rep(i,it,Sl[Srev[it]+1]-1)f[i]+=1;
+			rep(i,Srev[it],Scnt)h[i]+=1;
+		&#125;
+        for(auto qid:T[k])&#123;
+            L=Q[qid].l,R=Q[qid].r,tmp=0;
+            if(Irev[L]+1&gt;=Irev[R])&#123;
+                rep(i,L,R)chmax(tmp,Pqry(it[i].r)-Pqry(it[i].l-1));
+            &#125;else&#123;
+                rep(i,L,Il[Irev[L]+1]-1)chmax(tmp,Pqry(it[i].r)-Pqry(it[i].l-1));
+                rep(i,Il[Irev[R]],R)chmax(tmp,Pqry(it[i].r)-Pqry(it[i].l-1));
+            &#125;
+            chmax(ans[qid],tmp);
+        &#125;
+        for(auto it:F[k])&#123;
+			rep(i,it,Sl[Srev[it]+1]-1)f[i]-=1;
+			rep(i,Srev[it],Scnt)h[i]-=1;
+		&#125;
+    &#125;
+    rep(i,1,q)cout&lt;&lt;ans[i]&lt;&lt;&#39;\n&#39;;
+    return 0;
+&#125;
+</code></pre>
 <p>数据生成器：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">big_rand</span><span class="params">(<span class="type">int</span> mod)</span> </span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> rnd = (<span class="number">1LL</span> * <span class="built_in">rand</span>() &lt;&lt; <span class="number">15</span>) | <span class="built_in">rand</span>();</span><br><span class="line">    <span class="keyword">return</span> rnd % mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">200000</span>, m = <span class="number">200000</span>, q = <span class="number">200000</span>;</span><br><span class="line">    <span class="type">unsigned</span> seed = <span class="built_in">time</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (argc &gt;= <span class="number">4</span>) &#123;</span><br><span class="line">        n = <span class="built_in">atoi</span>(argv[<span class="number">1</span>]);</span><br><span class="line">        m = <span class="built_in">atoi</span>(argv[<span class="number">2</span>]);</span><br><span class="line">        q = <span class="built_in">atoi</span>(argv[<span class="number">3</span>]);</span><br><span class="line">        <span class="keyword">if</span> (argc &gt;= <span class="number">5</span>) seed = <span class="built_in">atoi</span>(argv[<span class="number">4</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">srand</span>(seed);</span><br><span class="line">    <span class="built_in">fprintf</span>(stderr, <span class="string">&quot;Random seed: %u\n&quot;</span>, seed);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, n, m, q);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d%c&quot;</span>, <span class="built_in">big_rand</span>(n) + <span class="number">1</span>, (i == n - <span class="number">1</span>) ? <span class="string">&#x27;\n&#x27;</span> : <span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="built_in">big_rand</span>(n) + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> r = <span class="built_in">big_rand</span>(n) + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (l &gt; r) <span class="built_in">swap</span>(l, r);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, l, r);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; q; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> L = <span class="built_in">big_rand</span>(m) + <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> R = L + <span class="built_in">big_rand</span>(m - L + <span class="number">1</span>);</span><br><span class="line">        <span class="type">int</span> k = <span class="built_in">big_rand</span>(n) + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d %d\n&quot;</span>, L, R, k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;ctime&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+inline int big_rand(int mod) &#123;
+    long long rnd = (1LL * rand() &lt;&lt; 15) | rand();
+    return rnd % mod;
+&#125;
+
+signed main(int argc, char* argv[]) &#123;
+    int n = 200000, m = 200000, q = 200000;
+    unsigned seed = time(0);
+    if (argc &gt;= 4) &#123;
+        n = atoi(argv[1]);
+        m = atoi(argv[2]);
+        q = atoi(argv[3]);
+        if (argc &gt;= 5) seed = atoi(argv[4]);
+    &#125;
+    srand(seed);
+    fprintf(stderr, &quot;Random seed: %u\n&quot;, seed);
+    printf(&quot;%d %d %d\n&quot;, n, m, q);
+    for (int i = 0; i &lt; n; ++i) &#123;
+        printf(&quot;%d%c&quot;, big_rand(n) + 1, (i == n - 1) ? &#39;\n&#39; : &#39; &#39;);
+    &#125;
+    for (int i = 0; i &lt; m; ++i) &#123;
+        int l = big_rand(n) + 1;
+        int r = big_rand(n) + 1;
+        if (l &gt; r) swap(l, r);
+        printf(&quot;%d %d\n&quot;, l, r);
+    &#125;
+    for (int i = 0; i &lt; q; ++i) &#123;
+        int L = big_rand(m) + 1;
+        int R = L + big_rand(m - L + 1);
+        int k = big_rand(n) + 1;
+        printf(&quot;%d %d %d\n&quot;, L, R, k);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+
 	</div>
 
 	

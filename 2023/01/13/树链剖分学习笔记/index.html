@@ -950,13 +950,226 @@
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>分两个 DFS，所需变量：</p>
 <p>fa[] : fa[i] 表示第 i 个节点的父亲节点；<br>Hson[] : Hson[i] 表示第 i 个节点的重儿子节点；<br>Dep[] : Dep[i] 表示第 i 个节点的深度（根节点深度为 1）；<br>Size[] : Size[i] 表示第 i 个节点的子树大小；<br>Top[] : Top[i] 表示第 i 个节点所在的链的顶部节点；<br>seg[] : seg[i] 表示第 i 个节点的 DFS 序；<br>rev[] : 表示 DFS 序所对应的节点编号。</p>
 <p>CODE：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs1</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">	fa[p] = f;</span><br><span class="line">	Dep[p] = Dep[f] + <span class="number">1</span>;</span><br><span class="line">	Size[p] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == f) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">Podfs1</span>(v, p);</span><br><span class="line">		Size[p] += Size[v];</span><br><span class="line">		<span class="keyword">if</span> (Size[v] &gt; Size[Hson[p]]) Hson[p] = v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs2</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> top)</span> </span>&#123;</span><br><span class="line">	++DFNtot;</span><br><span class="line">	Top[p] = top;</span><br><span class="line">	seg[p] = DFNtot;</span><br><span class="line">	rev[DFNtot] = p;</span><br><span class="line">	<span class="keyword">if</span> (Hson[p])</span><br><span class="line">		<span class="built_in">Podfs2</span>(Hson[p], top);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == fa[p]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (Hson[p] != v) <span class="built_in">Podfs2</span>(v, v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-cpp">void Podfs1(int p, int f) &#123;
+	fa[p] = f;
+	Dep[p] = Dep[f] + 1;
+	Size[p] = 1;
+	for (int i = head[p]; i; i = node[i].next) &#123;
+		int v = node[i].y;
+		if (v == f) continue;
+		Podfs1(v, p);
+		Size[p] += Size[v];
+		if (Size[v] &gt; Size[Hson[p]]) Hson[p] = v;
+	&#125;
+&#125;
+</code></pre>
+<pre><code class="language-cpp">void Podfs2(int p, int top) &#123;
+	++DFNtot;
+	Top[p] = top;
+	seg[p] = DFNtot;
+	rev[DFNtot] = p;
+	if (Hson[p])
+		Podfs2(Hson[p], top);
+	for (int i = head[p]; i; i = node[i].next) &#123;
+		int v = node[i].y;
+		if (v == fa[p]) continue;
+		if (Hson[p] != v) Podfs2(v, v);
+	&#125;
+&#125;
+</code></pre>
 <p>配合线段树与实现 LCA：</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3384">P3384 【模板】重链剖分&#x2F;树链剖分</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> _ = <span class="number">1e5</span> + <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> N, M, P, R, val[_];</span><br><span class="line"><span class="type">int</span> fa[_], Hson[_], Dep[_], Size[_], Top[_], seg[_], rev[_], DFNtot = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> head[_], Tot = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">	<span class="type">int</span> y, next;</span><br><span class="line">	<span class="built_in">Node</span>() &#123;next = <span class="number">0</span>;&#125;</span><br><span class="line">&#125; node[<span class="number">2</span> * _];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">	++Tot;</span><br><span class="line">	node[Tot].y = y;</span><br><span class="line">	node[Tot].next = head[x];</span><br><span class="line">	head[x] = Tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*--树剖dfs--*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs1</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> f)</span> </span>&#123;</span><br><span class="line">	fa[p] = f;</span><br><span class="line">	Dep[p] = Dep[f] + <span class="number">1</span>;</span><br><span class="line">	Size[p] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == f) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">Podfs1</span>(v, p);</span><br><span class="line">		Size[p] += Size[v];</span><br><span class="line">		<span class="keyword">if</span> (Size[v] &gt; Size[Hson[p]]) Hson[p] = v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Podfs2</span><span class="params">(<span class="type">int</span> p, <span class="type">int</span> top)</span> </span>&#123;</span><br><span class="line">	++DFNtot;</span><br><span class="line">	Top[p] = top;</span><br><span class="line">	seg[p] = DFNtot;</span><br><span class="line">	rev[DFNtot] = p;</span><br><span class="line">	<span class="keyword">if</span> (Hson[p])</span><br><span class="line">		<span class="built_in">Podfs2</span>(Hson[p], top);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = head[p]; i; i = node[i].next) &#123;</span><br><span class="line">		<span class="type">int</span> v = node[i].y;</span><br><span class="line">		<span class="keyword">if</span> (v == fa[p]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (Hson[p] != v) <span class="built_in">Podfs2</span>(v, v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*--线段树--*/</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Tree</span> &#123;</span><br><span class="line">	<span class="type">int</span> l, r, sum;</span><br><span class="line">	<span class="type">int</span> lazy;</span><br><span class="line">&#125; tree[<span class="number">4</span> * _];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">lson</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;<span class="keyword">return</span> root &lt;&lt; <span class="number">1</span>;&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">rson</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;<span class="keyword">return</span> root &lt;&lt; <span class="number">1</span> | <span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Push_Up</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;</span><br><span class="line">	tree[root].sum = (tree[<span class="built_in">lson</span>(root)].sum + tree[<span class="built_in">rson</span>(root)].sum) % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Push_Down</span><span class="params">(<span class="type">int</span> root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (tree[root].lazy != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="type">int</span> num = tree[root].lazy;</span><br><span class="line">		tree[<span class="built_in">lson</span>(root)].sum = (tree[<span class="built_in">lson</span>(root)].sum + (tree[<span class="built_in">lson</span>(root)].r - tree[<span class="built_in">lson</span>(root)].l + <span class="number">1</span>) * num % P) % P;</span><br><span class="line">		tree[<span class="built_in">rson</span>(root)].sum = (tree[<span class="built_in">rson</span>(root)].sum + (tree[<span class="built_in">rson</span>(root)].r - tree[<span class="built_in">rson</span>(root)].l + <span class="number">1</span>) * num % P) % P;</span><br><span class="line">		tree[<span class="built_in">lson</span>(root)].lazy = (tree[<span class="built_in">lson</span>(root)].lazy + num) % P;</span><br><span class="line">		tree[<span class="built_in">rson</span>(root)].lazy = (tree[<span class="built_in">rson</span>(root)].lazy + num) % P;</span><br><span class="line">		tree[root].lazy = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Build</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> root)</span> </span>&#123;</span><br><span class="line">	tree[root].l = l;</span><br><span class="line">	tree[root].r = r;</span><br><span class="line">	<span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">		tree[root].sum = val[rev[l]] % P;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">Build</span>(l, mid, <span class="built_in">lson</span>(root));</span><br><span class="line">	<span class="built_in">Build</span>(mid + <span class="number">1</span>, r, <span class="built_in">rson</span>(root));</span><br><span class="line">	<span class="built_in">Push_Up</span>(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Change</span><span class="params">(<span class="type">int</span> root, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> L, <span class="type">int</span> R, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) &#123;</span><br><span class="line">		tree[root].sum += (r - l + <span class="number">1</span>) * num % P;</span><br><span class="line">		tree[root].sum %= P;</span><br><span class="line">		tree[root].lazy += num % P;</span><br><span class="line">		tree[root].lazy %= P;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">Push_Down</span>(root);</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= mid) </span><br><span class="line">		<span class="built_in">Change</span>(<span class="built_in">lson</span>(root), l, mid, L, R, num);</span><br><span class="line">	<span class="keyword">if</span> (mid &lt; R)</span><br><span class="line">		<span class="built_in">Change</span>(<span class="built_in">rson</span>(root), mid + <span class="number">1</span>, r, L, R, num);</span><br><span class="line">	<span class="built_in">Push_Up</span>(root);</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Query</span><span class="params">(<span class="type">int</span> root, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> L, <span class="type">int</span> R)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (L &gt; r || R &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= l &amp;&amp; r &lt;= R) </span><br><span class="line">		<span class="keyword">return</span> tree[root].sum % P;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">Push_Down</span>(root);</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span> (L &lt;= mid) &#123;</span><br><span class="line">		ans += <span class="built_in">Query</span>(<span class="built_in">lson</span>(root), l, mid, L, R) % P;</span><br><span class="line">		ans %= P;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (mid &lt; R) &#123;</span><br><span class="line">		ans += <span class="built_in">Query</span>(<span class="built_in">rson</span>(root), mid + <span class="number">1</span>, r, L, R) % P;</span><br><span class="line">		ans %= P;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*--LCA--*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">TChange</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v, <span class="type">int</span> num)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (Top[u] != Top[v]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Dep[Top[u]] &gt; Dep[Top[v]]) &#123;</span><br><span class="line">			<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[u]], seg[u], num);</span><br><span class="line">			u = fa[Top[u]];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[v]], seg[v], num);</span><br><span class="line">			v = fa[Top[v]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (Dep[u] &gt; Dep[v]) <span class="built_in">swap</span>(u, v);</span><br><span class="line">	<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[u], seg[v], num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">TQuery</span><span class="params">(<span class="type">int</span> u, <span class="type">int</span> v)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (Top[u] != Top[v]) &#123;</span><br><span class="line">		<span class="keyword">if</span> (Dep[Top[u]] &gt; Dep[Top[v]]) &#123;</span><br><span class="line">			ans = ans + <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[u]], seg[u]) % P;</span><br><span class="line">			ans %= P;</span><br><span class="line">			u = fa[Top[u]];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			ans = ans + <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[Top[v]], seg[v]) % P;</span><br><span class="line">			ans %= P;</span><br><span class="line">			v = fa[Top[v]];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (Dep[u] &gt; Dep[v]) <span class="built_in">swap</span>(u, v);</span><br><span class="line">	ans = (ans + <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[u], seg[v]) % P) % P;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cin &gt;&gt; N &gt;&gt; M &gt;&gt; R &gt;&gt; P;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= N; i++) cin &gt;&gt; val[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; N; i++) &#123;</span><br><span class="line">		<span class="type">int</span> x, y;</span><br><span class="line">		cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">		<span class="built_in">add</span>(x, y);</span><br><span class="line">		<span class="built_in">add</span>(y, x);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">Podfs1</span>(R, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">Podfs2</span>(R, R);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">Build</span>(<span class="number">1</span>, DFNtot, <span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (M--) &#123;</span><br><span class="line">		<span class="type">int</span> k;</span><br><span class="line">		cin &gt;&gt; k;</span><br><span class="line">		<span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x, y, z;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;</span><br><span class="line">			<span class="built_in">TChange</span>(x, y, z);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">2</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x, y;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">			cout &lt;&lt; <span class="built_in">TQuery</span>(x, y) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">3</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x, z;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; z;</span><br><span class="line">			<span class="built_in">Change</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[x], seg[x] + Size[x] - <span class="number">1</span>, z);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (k == <span class="number">4</span>) &#123;</span><br><span class="line">			<span class="type">int</span> x;</span><br><span class="line">			cin &gt;&gt; x;</span><br><span class="line">			cout &lt;&lt; <span class="built_in">Query</span>(<span class="number">1</span>, <span class="number">1</span>, DFNtot, seg[x], seg[x] + Size[x] - <span class="number">1</span>) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+#define int long long
+using namespace std;
+const int _ = 1e5 + 7;
+
+int N, M, P, R, val[_];
+int fa[_], Hson[_], Dep[_], Size[_], Top[_], seg[_], rev[_], DFNtot = 0;
+
+int head[_], Tot = 0;
+struct Node &#123;
+	int y, next;
+	Node() &#123;next = 0;&#125;
+&#125; node[2 * _];
+
+void add(int x, int y) &#123;
+	++Tot;
+	node[Tot].y = y;
+	node[Tot].next = head[x];
+	head[x] = Tot;
+&#125;
+
+/*--树剖dfs--*/
+void Podfs1(int p, int f) &#123;
+	fa[p] = f;
+	Dep[p] = Dep[f] + 1;
+	Size[p] = 1;
+	for (int i = head[p]; i; i = node[i].next) &#123;
+		int v = node[i].y;
+		if (v == f) continue;
+		Podfs1(v, p);
+		Size[p] += Size[v];
+		if (Size[v] &gt; Size[Hson[p]]) Hson[p] = v;
+	&#125;
+&#125;
+void Podfs2(int p, int top) &#123;
+	++DFNtot;
+	Top[p] = top;
+	seg[p] = DFNtot;
+	rev[DFNtot] = p;
+	if (Hson[p])
+		Podfs2(Hson[p], top);
+	for (int i = head[p]; i; i = node[i].next) &#123;
+		int v = node[i].y;
+		if (v == fa[p]) continue;
+		if (Hson[p] != v) Podfs2(v, v);
+	&#125;
+&#125;
+/*--线段树--*/
+struct Tree &#123;
+	int l, r, sum;
+	int lazy;
+&#125; tree[4 * _];
+
+int lson(int root) &#123;return root &lt;&lt; 1;&#125;
+int rson(int root) &#123;return root &lt;&lt; 1 | 1;&#125;
+
+void Push_Up(int root) &#123;
+	tree[root].sum = (tree[lson(root)].sum + tree[rson(root)].sum) % P;
+&#125;
+
+void Push_Down(int root) &#123;
+	if (tree[root].lazy != 0) &#123;
+		int num = tree[root].lazy;
+		tree[lson(root)].sum = (tree[lson(root)].sum + (tree[lson(root)].r - tree[lson(root)].l + 1) * num % P) % P;
+		tree[rson(root)].sum = (tree[rson(root)].sum + (tree[rson(root)].r - tree[rson(root)].l + 1) * num % P) % P;
+		tree[lson(root)].lazy = (tree[lson(root)].lazy + num) % P;
+		tree[rson(root)].lazy = (tree[rson(root)].lazy + num) % P;
+		tree[root].lazy = 0;
+	&#125;
+&#125;
+
+void Build(int l, int r, int root) &#123;
+	tree[root].l = l;
+	tree[root].r = r;
+	if (l == r) &#123;
+		tree[root].sum = val[rev[l]] % P;
+		return ;
+	&#125;
+	int mid = l + r &gt;&gt; 1;
+	Build(l, mid, lson(root));
+	Build(mid + 1, r, rson(root));
+	Push_Up(root);
+&#125;
+
+void Change(int root, int l, int r, int L, int R, int num) &#123;
+	if (L &lt;= l &amp;&amp; r &lt;= R) &#123;
+		tree[root].sum += (r - l + 1) * num % P;
+		tree[root].sum %= P;
+		tree[root].lazy += num % P;
+		tree[root].lazy %= P;
+		return ;
+	&#125;
+	Push_Down(root);
+	int mid = l + r &gt;&gt; 1;
+	if (L &lt;= mid) 
+		Change(lson(root), l, mid, L, R, num);
+	if (mid &lt; R)
+		Change(rson(root), mid + 1, r, L, R, num);
+	Push_Up(root);
+	return ;
+&#125;
+
+int Query(int root, int l, int r, int L, int R) &#123;
+	if (L &gt; r || R &lt; l) return 0;
+	if (L &lt;= l &amp;&amp; r &lt;= R) 
+		return tree[root].sum % P;
+	int ans = 0;
+	Push_Down(root);
+	int mid = l + r &gt;&gt; 1;
+	if (L &lt;= mid) &#123;
+		ans += Query(lson(root), l, mid, L, R) % P;
+		ans %= P;
+	&#125;
+	if (mid &lt; R) &#123;
+		ans += Query(rson(root), mid + 1, r, L, R) % P;
+		ans %= P;
+	&#125;
+	return ans % P;
+&#125;
+
+/*--LCA--*/
+void TChange(int u, int v, int num) &#123;
+	while (Top[u] != Top[v]) &#123;
+		if (Dep[Top[u]] &gt; Dep[Top[v]]) &#123;
+			Change(1, 1, DFNtot, seg[Top[u]], seg[u], num);
+			u = fa[Top[u]];
+		&#125; else &#123;
+			Change(1, 1, DFNtot, seg[Top[v]], seg[v], num);
+			v = fa[Top[v]];
+		&#125;
+	&#125;
+	if (Dep[u] &gt; Dep[v]) swap(u, v);
+	Change(1, 1, DFNtot, seg[u], seg[v], num);
+&#125;
+int TQuery(int u, int v) &#123;
+	int ans = 0;
+	while (Top[u] != Top[v]) &#123;
+		if (Dep[Top[u]] &gt; Dep[Top[v]]) &#123;
+			ans = ans + Query(1, 1, DFNtot, seg[Top[u]], seg[u]) % P;
+			ans %= P;
+			u = fa[Top[u]];
+		&#125; else &#123;
+			ans = ans + Query(1, 1, DFNtot, seg[Top[v]], seg[v]) % P;
+			ans %= P;
+			v = fa[Top[v]];
+		&#125;
+	&#125;
+	if (Dep[u] &gt; Dep[v]) swap(u, v);
+	ans = (ans + Query(1, 1, DFNtot, seg[u], seg[v]) % P) % P;
+	return ans;
+&#125;
+signed main() &#123;
+	cin &gt;&gt; N &gt;&gt; M &gt;&gt; R &gt;&gt; P;
+	for (int i = 1; i &lt;= N; i++) cin &gt;&gt; val[i];
+	for (int i = 1; i &lt; N; i++) &#123;
+		int x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		add(x, y);
+		add(y, x);
+	&#125;
+	
+	Podfs1(R, 0);
+	Podfs2(R, R);
+	
+	Build(1, DFNtot, 1);
+	
+	while (M--) &#123;
+		int k;
+		cin &gt;&gt; k;
+		if (k == 1) &#123;
+			int x, y, z;
+			cin &gt;&gt; x &gt;&gt; y &gt;&gt; z;
+			TChange(x, y, z);
+		&#125; else if (k == 2) &#123;
+			int x, y;
+			cin &gt;&gt; x &gt;&gt; y;
+			cout &lt;&lt; TQuery(x, y) &lt;&lt; &#39;\n&#39;;
+		&#125; else if (k == 3) &#123;
+			int x, z;
+			cin &gt;&gt; x &gt;&gt; z;
+			Change(1, 1, DFNtot, seg[x], seg[x] + Size[x] - 1, z);
+		&#125; else if (k == 4) &#123;
+			int x;
+			cin &gt;&gt; x;
+			cout &lt;&lt; Query(1, 1, DFNtot, seg[x], seg[x] + Size[x] - 1) &lt;&lt; &#39;\n&#39;;
+		&#125;
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+
 	</div>
 
 	

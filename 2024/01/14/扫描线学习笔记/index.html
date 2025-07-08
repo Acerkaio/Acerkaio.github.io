@@ -939,8 +939,13 @@
 <h3 id="典例四：P4211-LNOI2014-LCA-P5305-GXOI-GZOI2019-旧词"><a href="#典例四：P4211-LNOI2014-LCA-P5305-GXOI-GZOI2019-旧词" class="headerlink" title="典例四：P4211 [LNOI2014] LCA &amp; P5305 [GXOI&#x2F;GZOI2019] 旧词"></a>典例四：P4211 [LNOI2014] LCA &amp; P5305 [GXOI&#x2F;GZOI2019] 旧词</h3><p>重心在加点，该 trick 以适用任意函数，即构造加点的构造函数，要考虑树上前缀加出来是每个点的函数。</p>
 <hr>
 <h3 id="典例五：P4137-Rmq-Problem-mex"><a href="#典例五：P4137-Rmq-Problem-mex" class="headerlink" title="典例五：P4137 Rmq Problem &#x2F; mex"></a>典例五：P4137 Rmq Problem &#x2F; mex</h3><p>设计信息 &amp; 考虑左端点，典的 $trick$，$O(n \log^2 n)$ 是简单的，$O(n \log n)$ 在线段树上二分，其形态如此：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">qry</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> val)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span> l;</span><br><span class="line">	<span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(t[ls]&lt;val)<span class="keyword">return</span> <span class="built_in">qry</span>(ls,l,mid,val);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">qry</span>(rs,mid<span class="number">+1</span>,r,val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="language-cpp">int qry(int p,int l,int r,int val)&#123;
+	if(l==r)return l;
+	int mid=l+r&gt;&gt;1;
+	if(t[ls]&lt;val)return qry(ls,l,mid,val);
+	else return qry(rs,mid+1,r,val);
+&#125;
+</code></pre>
 <p>至此得到静态区间 mex $O(n\log n)$ 做法。</p>
 
 	</div>
