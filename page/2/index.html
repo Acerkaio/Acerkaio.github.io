@@ -24,6 +24,7 @@
 	<meta name="theme-version" content="1.0.2">
 	<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 	
 <link rel="stylesheet" href="/assets/argon_css_merged.css">
@@ -486,7 +487,7 @@
 							<nav class="site-state">
 								<div class="site-state-item site-state-posts">
 									<a href="/archives">
-										<span class="site-state-item-count">11</span>
+										<span class="site-state-item-count">12</span>
 										<span class="site-state-item-name">文章</span>
 									</a>
 								</div>
@@ -498,7 +499,7 @@
 								</div>      
 								<div class="site-state-item site-state-tags">
 									<a data-toggle="modal" data-target="#blog_tags">
-										<span class="site-state-item-count">6</span>
+										<span class="site-state-item-count">7</span>
 										<span class="site-state-item-name">标签</span>
 									</a>
 								</div>
@@ -544,7 +545,273 @@
 					</div>
 				</div>
 			</div>
+			
+  <div id="music-player" class="card bg-white shadow-sm border-0 mt-3">
+    <div class="card-body p-2">
+      <div class="d-flex align-items-center">
+        <!-- 专辑封面 -->
+        <div class="music-cover-container mr-2">
+          <img id="music-cover" class="rounded shadow-sm" style="width: 48px; height: 48px;" 
+               src="https://p2.music.126.net/UeTuwE7pvjBpypWLudqukA==/3132508627578625.jpg" 
+               alt="专辑封面">
+          <div class="music-play-btn">
+            <i class="fa fa-play music-control-icon" id="music-play"></i>
+          </div>
+        </div>
+        
+        <!-- 歌曲信息 -->
+        <div class="flex-grow-1 text-truncate mr-2">
+          <div class="text-truncate small font-weight-bold" id="music-title">加载中...</div>
+          <div class="text-truncate text-muted x-small" id="music-artist">-</div>
+        </div>
+        
+        <!-- 控制按钮 -->
+        <div class="d-flex">
+          <i class="fa fa-step-backward music-control-icon mr-2" id="music-prev"></i>
+          <i class="fa fa-step-forward music-control-icon" id="music-next"></i>
+        </div>
+      </div>
+      
+      <!-- 进度条 -->
+      <div class="d-flex align-items-center mt-2">
+        <span class="text-muted x-small mr-2" id="music-current">0:00</span>
+        <div class="progress flex-grow-1" style="height: 3px;">
+          <div id="music-progress" class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+        </div>
+        <span class="text-muted x-small ml-2" id="music-duration">0:00</span>
+      </div>
+      
+      <!-- 歌词容器 -->
+      <div id="music-lyrics" class="text-center mt-2 x-small text-muted" style="height: 20px; overflow: hidden;">
+        歌词加载中...
+      </div>
+    </div>
+    
+    <!-- 隐藏的音频元素 -->
+    <audio id="music-audio" crossorigin="anonymous"></audio>
+  </div>
+
+  <style>
+    .music-control-icon {
+      cursor: pointer;
+      color: #5e72e4;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .music-control-icon:hover {
+      color: #233dd2;
+      transform: scale(1.1);
+    }
+    .music-cover-container {
+      position: relative;
+      border-radius: 8px;
+    }
+    .music-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .music-cover-container:hover .music-play-btn {
+      opacity: 1;
+    }
+    .music-play-btn i {
+      margin-left: 2px;
+      font-size: 12px;
+    }
+    #music-lyrics {
+      transition: all 0.3s;
+      font-size: 12px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const musicPlayer = {
+        audio: document.getElementById('music-audio'),
+        playlist: [],
+        currentIndex: 0,
+        isPlaying: false,
+        
+        init: function() {
+          this.elements = {
+            cover: document.getElementById('music-cover'),
+            title: document.getElementById('music-title'),
+            artist: document.getElementById('music-artist'),
+            playBtn: document.getElementById('music-play'),
+            prevBtn: document.getElementById('music-prev'),
+            nextBtn: document.getElementById('music-next'),
+            progress: document.getElementById('music-progress'),
+            currentTime: document.getElementById('music-current'),
+            duration: document.getElementById('music-duration'),
+            lyrics: document.getElementById('music-lyrics')
+          };
+          
+          // 绑定事件
+          this.elements.playBtn.addEventListener('click', () => this.togglePlay());
+          this.elements.prevBtn.addEventListener('click', () => this.prev());
+          this.elements.nextBtn.addEventListener('click', () => this.next());
+          this.audio.addEventListener('timeupdate', () => this.updateProgress());
+          this.audio.addEventListener('ended', () => this.next());
+          this.audio.addEventListener('loadedmetadata', () => {
+            this.elements.duration.textContent = this.formatTime(this.audio.duration);
+          });
+          
+          // 获取歌单
+          this.fetchPlaylist();
+        },
+        
+        fetchPlaylist: function() {
+          // 使用代理API获取歌单
+          fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=7002835194')
+            .then(response => response.json())
+            .then(data => {
+              this.playlist = data;
+              this.loadSong(0);
+            })
+            .catch(error => {
+              console.error('获取歌单失败:', error);
+              this.elements.title.textContent = '加载失败';
+            });
+        },
+        
+        loadSong: function(index) {
+          if (index < 0 || index >= this.playlist.length) return;
+          
+          this.currentIndex = index;
+          const song = this.playlist[index];
+          
+          // 更新UI
+          this.elements.cover.src = song.pic || 'https://p2.music.126.net/UeTuwE7pvjBpypWLudqukA==/3132508627578625.jpg';
+          this.elements.title.textContent = song.title || '未知歌曲';
+          this.elements.artist.textContent = song.author || '未知歌手';
+          
+          // 加载音频
+          this.audio.src = song.url;
+          this.audio.load();
+          
+          // 加载歌词
+          this.loadLyrics(song);
+          
+            this.isPlaying = false;
+            this.updatePlayIcon();
+          // 自动播放
+          // setTimeout(() => {
+          //   this.audio.play().catch(e => console.log('自动播放被阻止:', e));
+          //   this.isPlaying = true;
+          //   this.updatePlayIcon();
+          // }, 500);
+        },
+        
+        loadLyrics: function(song) {
+          this.elements.lyrics.textContent = '歌词加载中...';
+		// console.log(song.lrc);
+		
+          fetch(song.lrc)
+            .then(response => response.json())
+            .then(data => {
+              this.lyrics = this.parseLyrics(data.lyric || '');
+              this.elements.lyrics.textContent = this.lyrics.length > 0 ? '歌词已加载' : '无歌词';
+            })
+            .catch(() => {	
+              this.lyrics = [];
+              this.elements.lyrics.textContent = '歌词加载失败';
+            });
+        },
+        
+        parseLyrics: function(lyricText) {
+          const lines = lyricText.split('\n');
+          const lyrics = [];
+          
+          lines.forEach(line => {
+            const match = line.match(/\[(\d+):(\d+\.\d+)\](.+)/);
+            if (match) {
+              const minutes = parseFloat(match[1]);
+              const seconds = parseFloat(match[2]);
+              const time = minutes * 60 + seconds;
+              const text = match[3].trim();
+              if (text) lyrics.push({ time, text });
+            }
+          });
+          
+          return lyrics;
+        },
+        
+        updateLyrics: function() {
+          if (!this.lyrics || this.lyrics.length === 0) return;
+          
+          const currentTime = this.audio.currentTime;
+          let currentLine = '';
+          
+          // 找到当前时间对应的歌词
+          for (let i = 0; i < this.lyrics.length; i++) {
+            if (currentTime >= this.lyrics[i].time) {
+              currentLine = this.lyrics[i].text;
+            } else {
+              break;
+            }
+          }
+          
+          this.elements.lyrics.textContent = currentLine || '...';
+        },
+        
+        togglePlay: function() {
+          if (this.isPlaying) {
+            this.audio.pause();
+          } else {
+            this.audio.play().catch(e => console.log('播放失败:', e));
+          }
+          this.isPlaying = !this.isPlaying;
+          this.updatePlayIcon();
+        },
+        
+        updatePlayIcon: function() {
+          this.elements.playBtn.className = this.isPlaying ? 
+            'fa fa-pause music-control-icon' : 
+            'fa fa-play music-control-icon';
+        },
+        
+        prev: function() {
+          let newIndex = this.currentIndex - 1;
+          if (newIndex < 0) newIndex = this.playlist.length - 1;
+          this.loadSong(newIndex);
+        },
+        
+        next: function() {
+          let newIndex = this.currentIndex + 1;
+          if (newIndex >= this.playlist.length) newIndex = 0;
+          this.loadSong(newIndex);
+        },
+        
+        updateProgress: function() {
+          const percent = (this.audio.currentTime / this.audio.duration) * 100;
+          this.elements.progress.style.width = `${percent}%`;
+          this.elements.currentTime.textContent = this.formatTime(this.audio.currentTime);
+          this.updateLyrics();
+        },
+        
+        formatTime: function(seconds) {
+          const min = Math.floor(seconds / 60);
+          const sec = Math.floor(seconds % 60);
+          return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        }
+      };
+      
+      musicPlayer.init();
+    });
+  </script>
+
 		</div>
+		
 </aside>
 <div class="modal fade" id="blog_categories" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
@@ -556,7 +823,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<a class="badge badge-secondary tag" href="/categories/%E5%88%9B%E4%BD%9C/" rel="tag">创作 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/categories/%E8%AE%B0%E5%BD%95/" rel="tag">记录 <span class="tag-num">5</span></a><a class="badge badge-secondary tag" href="/categories/%E8%AE%B0%E5%BD%95/%E9%97%B2%E8%AF%9D/" rel="tag">闲话 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/categories/%E9%97%B2%E8%AF%9D/" rel="tag">闲话 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E9%A2%98%E8%A7%A3/" rel="tag">题解 <span class="tag-num">2</span></a>
+				<a class="badge badge-secondary tag" href="/categories/%E5%88%9B%E4%BD%9C/" rel="tag">创作 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/categories/%E8%AE%B0%E5%BD%95/" rel="tag">记录 <span class="tag-num">5</span></a><a class="badge badge-secondary tag" href="/categories/%E8%AE%B0%E5%BD%95/%E9%97%B2%E8%AF%9D/" rel="tag">闲话 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/categories/%E9%97%B2%E8%AF%9D/" rel="tag">闲话 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/categories/%E9%A2%98%E8%A7%A3/" rel="tag">题解 <span class="tag-num">3</span></a>
 			</div>
 		</div>
 	</div>
@@ -571,7 +838,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<a class="badge badge-secondary tag" href="/tags/Ae/" rel="tag">Ae <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%88%9B%E4%BD%9C/" rel="tag">创作 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录 <span class="tag-num">5</span></a><a class="badge badge-secondary tag" href="/tags/%E9%97%B2%E8%AF%9D/" rel="tag">闲话 <span class="tag-num">3</span></a><a class="badge badge-secondary tag" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解 <span class="tag-num">2</span></a>
+				<a class="badge badge-secondary tag" href="/tags/Ae/" rel="tag">Ae <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%88%86%E5%9D%97/" rel="tag">分块 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/%E5%88%9B%E4%BD%9C/" rel="tag">创作 <span class="tag-num">1</span></a><a class="badge badge-secondary tag" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记 <span class="tag-num">2</span></a><a class="badge badge-secondary tag" href="/tags/%E8%AE%B0%E5%BD%95/" rel="tag">记录 <span class="tag-num">5</span></a><a class="badge badge-secondary tag" href="/tags/%E9%97%B2%E8%AF%9D/" rel="tag">闲话 <span class="tag-num">3</span></a><a class="badge badge-secondary tag" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解 <span class="tag-num">3</span></a>
 			</div>
 		</div>
 	</div>
@@ -582,6 +849,77 @@
 	<main id="main" class="site-main" role="main">
 		
 			
+	<article class="post card bg-white shadow-sm border-0 post-preview">
+	<header class="post-header text-center">
+		
+		<a class="post-title" href="/2022/10/01/CF1730B%E9%A2%98%E8%A7%A3/">CF1730A/B题解</a>
+		<div class="post-meta">
+			
+						
+						<div class="post-meta-detail post-meta-detail-time">
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
+							<time title="发布于 2022-10-1 16:20:12 | 编辑于 2025-6-25 17:43:42">2022-10-1 16:20
+							</time>
+						</div>
+					
+						
+							<div class="post-meta-devide">|</div>
+						
+						<div class="post-meta-detail post-meta-detail-categories">
+							<i class="fa fa-bookmark-o" aria-hidden="true"></i>
+							<a class="post-meta-detail-catagory-link" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>
+						</div>
+					
+						
+							<div class="post-meta-devide">|</div>
+						
+						<div class="post-meta-detail post-meta-detail-words">
+							<i class="fa fa-book" aria-hidden="true"></i>
+							<span id="busuanzi_container_page_pv">
+								阅读<span id="busuanzi_value_page_pv"></span>次
+							</span>
+						</div>
+					
+						
+							<div class="post-meta-devide">|</div>
+						
+						<div class="post-meta-detail post-meta-detail-words">
+							<i class="fa fa-file-word-o" aria-hidden="true"></i>
+							676 字
+						</div>
+					
+						
+							<div class="post-meta-devide">|</div>
+						
+						<div class="post-meta-detail post-meta-detail-readingtime">
+							<i class="fa fa-hourglass-end" aria-hidden="true"></i>
+							2 分钟
+						</div>
+					
+		</div>
+		
+	</header>
+
+	<div class="post-content">
+		
+			
+				TJ 时间A 题：太水了，解法各种各样，真的没必要将（真的！
+看看隔壁的TJ吧（真的没必要讲，纯模拟。
+关于隔壁为啥还没有 B 题TJ（DDDD
+B 题：题意：坐标轴 n 个点，每个点的坐标是 xi (凑合着看吧，我还不会ktext），然而每个点都有一个前提时间 ti，我们需要寻找一个点 x0，使得 所有的 |xi - x0| + ti 中最大的最...
+			
+		
+	</div>
+
+	
+		<div class="post-tags">
+			<i class="fa fa-tags" aria-hidden="true"></i>
+			<a class="tag badge badge-secondary post-meta-detail-tag -none-link" href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag">题解</a>
+		</div>
+	
+</article>
+
+
 	<article class="post card bg-white shadow-sm border-0 post-preview">
 	<header class="post-header text-center post-header-with-thumbnail">
 		
