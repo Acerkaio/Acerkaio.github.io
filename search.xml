@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Ynoi Easy Round 2018 星野爱</title>
+      <link href="/2025/07/11/%E6%98%9F%E9%87%8E%E7%88%B1/"/>
+      <url>/2025/07/11/%E6%98%9F%E9%87%8E%E7%88%B1/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>太菜了，咕一会儿。</p></blockquote><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/4ifpqjie.png"></p><p>星野爱给了你一张无向图 $G$，设 $R(i)$ 为所有与 $i$ 相连的边的另一个端点构成的可重集合，可能有重边，没有自环。</p><p>每个节点有权值 $w_i$，初始时都为 $0$，需要维护两种操作。</p><ul><li><code>1,l,r,v</code>，对于 $i\in [l,r]$，$j\in R(i)$，令 $w_j&#x3D;w_j+v$</li><li><code>2,l,r</code>，计算 $\sum_{i\in[l,r]}\sum_{j\in R(i)}w_j$。</li></ul><p>输出的值请对 $2^{64}$ 取模。</p><hr><blockquote><p>能想到把这张图片放到这道题的背景和写出这道题的人都是神人了。1</p></blockquote><hr><p>带权分块。</p><p>更具体地，给出一个动态数组 $B_k$ 表示每一个块维护的权值和。我们这样将图加入到数组中：</p><ol><li>初始，$\text{index}&#x3D;1$，枚举点 $i$。</li><li>若 $size(B_{\text{index}})+size(R_i)&gt;\sqrt{n}$ 则 $\text{index} \longleftarrow \text{index}+1$。</li><li>将 $R_i$ 加入到 $B_{\text{index}}$ 末尾。</li></ol><p>很厉害。</p><p>因为有 $\sum 点的度数 &#x3D; 2m$。所以可以看成 $O(n)$。</p><p>…</p><pre><code class="language-cpp">#define rg for(reg int e=head[u],v=nxt[e];e&lt;head[u]+deg[u];++e,v=nxt[e])#define N (200010)#define B 1500struct OP&#123;int op,l,r;ull val,ans;&#125;r[N];int n,m,q,rx[N],ry[N],rk[N],in[N],tot,deg[N],head[N],nxt[N&lt;&lt;1],L[N],R[N],k,rev[N];ull ad[N],sum[N],num[N];vector&lt;int&gt;e[N];signed main()&#123;io.read(n);io.read(m);io.read(q);// Input graphrep(i,1,m)io.read(rx[i]),io.read(ry[i]),in[rx[i]]++,in[ry[i]]++;// Del useless noderep(i,1,n)if(!in[i])rk[i]=rk[i-1];else rk[i]=++tot;// Dev graphrep(i,1,m)e[rk[rx[i]]].pb(rk[ry[i]]),e[rk[ry[i]]].pb(rk[rx[i]]);// Add all into a linereg int TMPcnt=0;rep(i,1,n)&#123;head[i]=TMPcnt+1;for(auto to:e[i])deg[i]++,nxt[++TMPcnt]=to;&#125;// operatorrep(i,1,q)&#123;io.read(r[i].op),io.read(r[i].l),io.read(r[i].r);if(r[i].op==1)io.read(r[i].val);r[i].l=rk[r[i].l-1]+1;r[i].r=rk[r[i].r];&#125;// sqrtn=tot;reg int last=1,tmp=0;rep(i,1,n+1)if((tmp+=deg[i])&gt;=B||i&gt;n)++k,L[k]=last,R[k]=i-1,last=i,tmp=deg[i];rep(id,1,k)rep(i,L[id],R[id])rev[i]=id;// solve// --single one--rep(i,1,q)if(r[i].l&lt;=r[i].r)&#123;if(r[i].op==1)&#123; //changeif(rev[r[i].l]==rev[r[i].r]&amp;&amp;(r[i].l!=L[rev[r[i].l]]||r[i].r!=R[rev[r[i].r]]))&#123;rep(u,r[i].l,r[i].r)rg ad[v]+=r[i].val;&#125;else&#123;if(r[i].l!=L[rev[r[i].l]])rep(u,r[i].l,R[rev[r[i].l]])rg ad[v]+=r[i].val;if(r[i].r!=R[rev[r[i].r]])rep(u,L[rev[r[i].r]],r[i].r)rg ad[v]+=r[i].val;&#125;&#125;else&#123; //queryif(rev[r[i].l]==rev[r[i].r]&amp;&amp;(r[i].l!=L[rev[r[i].l]]||r[i].r!=R[rev[r[i].r]]))&#123;rep(u,r[i].l,r[i].r)rg r[i].ans+=ad[v];&#125;if(rev[r[i].l]!=rev[r[i].r])&#123;if(r[i].l!=L[rev[r[i].l]])rep(u,r[i].l,R[rev[r[i].l]])rg r[i].ans+=ad[v];if(r[i].r!=R[rev[r[i].r]])rep(u,L[rev[r[i].r]],r[i].r)rg r[i].ans+=ad[v];&#125;&#125;&#125;// ---full one---rep(id,1,k)&#123;memset(sum,0,sizeof sum);memset(num,0,sizeof num);rep(u,L[id],R[id])rg num[v]++;rep(u,1,n)&#123;rg sum[u]+=num[v];sum[u]+=sum[u-1];&#125;;ull sgl=0,ful=0;rep(i,1,q)if(r[i].l&lt;=r[i].r)&#123;if(r[i].op==1)&#123;ful+=r[i].val*(sum[r[i].r]-sum[r[i].l-1]);if(r[i].l&lt;=L[id]&amp;&amp;R[id]&lt;=r[i].r)sgl+=r[i].val;&#125;else&#123;if(r[i].l&lt;=L[id]&amp;&amp;R[id]&lt;=r[i].r)r[i].ans+=ful; //贡献给整块查询if(rev[r[i].l]==rev[r[i].r]&amp;&amp;(r[i].l!=L[rev[r[i].l]]||r[i].r!=R[rev[r[i].r]]))r[i].ans+=sgl*(sum[r[i].r]-sum[r[i].l-1]);if(rev[r[i].l]!=rev[r[i].r])&#123;if(r[i].l!=L[rev[r[i].l]])r[i].ans+=sgl*(sum[R[rev[r[i].l]]]-sum[r[i].l-1]);if(r[i].r!=R[rev[r[i].r]])r[i].ans+=sgl*(sum[r[i].r]-sum[L[rev[r[i].r]]-1]);&#125;&#125;&#125;&#125;rep(i,1,q)if(r[i].op==2)io.write(r[i].ans,&#39;\n&#39;);return 0;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 题解 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 题解 </tag>
+            
+            <tag> 分块 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>时间限制40.00s</title>
       <link href="/2025/07/11/%E6%97%B6%E9%97%B4%E9%99%90%E5%88%B640-00s/"/>
       <url>/2025/07/11/%E6%97%B6%E9%97%B4%E9%99%90%E5%88%B640-00s/</url>
