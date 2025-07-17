@@ -20,7 +20,7 @@
 	<meta name="theme-color-rgb" content="94,114,228">
 	<meta name="theme-color-origin" content="#5e72e4">
 	<meta name="argon-enable-custom-theme-color" content="false">
-	<meta name="theme-card-radius" content="6">
+	<meta name="theme-card-radius" content="10">
 	<meta name="theme-version" content="1.0.2">
 	<link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
@@ -178,7 +178,7 @@
 </style>
 <style id="theme_cardradius_css">
 	:root{
-		--card-radius: 6px;
+		--card-radius: 10px;
 	}
 </style>
 
@@ -298,70 +298,19 @@
 	
 	<div id="banner_container" class="banner-container container text-center">
 		
-			<div class="banner-title text-white" data-text="Shawn 的闲话集" data-interval=""><span class="banner-title-inner">&nbsp;</span>
+			<div class="banner-title text-white" data-text="若待他年见此集，当忆今时笑语情" data-interval=""><span class="banner-title-inner">&nbsp;</span>
 		
 		</div>
 	</div>
 	
 		<style>
 			section.banner{
-				background-image: url(/assets/img/banner.jpg) !important;
+				background-image: url(https://pic1.imgdb.cn/item/6878e11558cb8da5c8becdf1.png) !important;
 			}
 		</style>
 	
 </section>
 
-
-	<style>
-		#content:before {
-			content: '';
-			display: block;
-			position: fixed;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			z-index: -2;
-			background: url(https://pic1.imgdb.cn/item/685dd33358cb8da5c8744b05.png);
-			background-position: center;
-			background-size: cover;
-			background-repeat: no-repeat;
-			opacity: 1;
-			transition: opacity .5s ease;
-		}
-		html.darkmode #content:before{
-			filter: brightness(0.65);
-		}
-		
-			#content:after {
-				content: '';
-				display: block;
-				position: fixed;
-				left: 0;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				z-index: -2;
-				background: url(https://pic1.imgdb.cn/item/685dd31358cb8da5c8744b03.jpg);
-				background-position: center;
-				background-size: cover;
-				background-repeat: no-repeat;
-				opacity: 0;
-				transition: opacity .5s ease;
-			}
-			html.darkmode #content:after {
-				opacity: 1;
-			}
-			html.darkmode #content:before {
-				opacity: 0;
-			}
-		
-		
-			#banner, #banner .shape {
-				background: transparent !important;
-			}
-		
-	</style>
 
 
 
@@ -552,7 +501,7 @@
         <!-- 专辑封面 -->
         <div class="music-cover-container mr-2">
           <img id="music-cover" class="rounded shadow-sm" style="width: 48px; height: 48px;" 
-               src="https://p2.music.126.net/UeTuwE7pvjBpypWLudqukA==/3132508627578625.jpg" 
+               src="https://p1.music.126.net/HJVzvRP1bEqxlEUeFOj4xA==/109951164791661758.jpg?param=200y200" 
                alt="专辑封面">
           <div class="music-play-btn">
             <i class="fa fa-play music-control-icon" id="music-play"></i>
@@ -582,9 +531,9 @@
       </div>
       
       <!-- 歌词容器 -->
-      <div id="music-lyrics" class="text-center mt-2 x-small text-muted" style="height: 20px; overflow: hidden;">
+      <!-- <div id="music-lyrics" class="text-center mt-2 x-small text-muted" style="height: 20px; overflow: hidden;">
         歌词加载中...
-      </div>
+      </div> -->
     </div>
     
     <!-- 隐藏的音频元素 -->
@@ -672,7 +621,7 @@
         
         fetchPlaylist: function() {
           // 使用代理API获取歌单
-          fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=7002835194')
+          fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=867465661')
             .then(response => response.json())
             .then(data => {
               this.playlist = data;
@@ -680,7 +629,7 @@
             })
             .catch(error => {
               console.error('获取歌单失败:', error);
-              this.elements.title.textContent = '加载失败';
+              // this.elements.title.textContent = '加载失败';
             });
         },
         
@@ -691,7 +640,7 @@
           const song = this.playlist[index];
           
           // 更新UI
-          this.elements.cover.src = song.pic || 'https://p2.music.126.net/UeTuwE7pvjBpypWLudqukA==/3132508627578625.jpg';
+          this.elements.cover.src = song.pic || 'https://p1.music.126.net/HJVzvRP1bEqxlEUeFOj4xA==/109951164791661758.jpg?param=200y200';
           this.elements.title.textContent = song.title || '未知歌曲';
           this.elements.artist.textContent = song.author || '未知歌手';
           

@@ -318,7 +318,7 @@ a.text-primary:focus , a.text-primary:hover {
 	padding: 0 5px;
 	max-width: 1200px;
 	margin: auto;
-	margin-top: -30vh;
+	margin-top: -45vh;
 }
 @media screen and (min-width:1700px){
 	#content{
@@ -522,7 +522,7 @@ body.leftbar-can-headroom.headroom---unpinned #navbar-main{
 
 .banner{
 	margin-bottom: 25px;
-	height: 71.8vh;
+	height: 120vh;
 	overflow: hidden;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -1333,6 +1333,11 @@ html.filter-grayscale{
 }
 
 /* 文章 */
+.post:not(.post-full):hover{
+	transition: .2s ease;
+	transform: translateY(-5px);
+    box-shadow: rgba(50, 50, 93, 0.2) 0px 15px 45px, rgba(0, 0, 0, 0.1) 0px 5px 25px !important;
+}
 .post{
 	margin-bottom: 25px;
 	padding: 30px 30px;
