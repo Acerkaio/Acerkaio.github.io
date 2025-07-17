@@ -33,35 +33,6 @@
     
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2025/07/13/hello-world/"/>
-      <url>/2025/07/13/hello-world/</url>
-      
-        <content type="html"><![CDATA[<h2 id="F-k-Alist"><a href="#F-k-Alist" class="headerlink" title="F**k Alist"></a>F**k Alist</h2><p>rt,被 Alist 背刺力（www</p><h3 id="一点闲话："><a href="#一点闲话：" class="headerlink" title="一点闲话："></a>一点闲话：</h3><p>Github 上开源的 Alist 被名为 <strong>不够科技（贵州）</strong> 的公司收购，疑似尝试上传了收集用户信息的代码（而且代码 AI 含量高(((</p><p>6 月 11 日，项目原开发者 Xhofe 在其 Alist News 订阅频道发布消息证实项目已交由公司运营，接下来 Xhofe 会帮忙审查开源版本仓库的代码，并且确保 release 的分支由 CI 自动构建。</p><p>还是被资本做局了w</p><h3 id="别把系统盘挂载在-Alist-上"><a href="#别把系统盘挂载在-Alist-上" class="headerlink" title="别把系统盘挂载在 Alist 上"></a>别把系统盘挂载在 Alist 上</h3><p>我知道这很蠢，但是别把系统盘挂载在 Alist 上。（（</p><p>因为你也不知道在哪里取消挂载，（你以为删除就是取消挂载？其实是 rm -rf</p><h2 id="博客构建："><a href="#博客构建：" class="headerlink" title="博客构建："></a>博客构建：</h2><p>基本信息 ☑</p><p>友链页面 ☑</p><p>关于页面 ☒</p><p>相册页面 ☒ </p><p>书架页面 ☒</p><p>Katex  ☑</p><p>一点css ☒ </p><p>☑☒ </p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 记录 </category>
-          
-          <category> 闲话 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 记录 </tag>
-            
-            <tag> 闲话 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Ynoi Easy Round 2018 星野爱</title>
       <link href="/2025/07/11/%E6%98%9F%E9%87%8E%E7%88%B1/"/>
       <url>/2025/07/11/%E6%98%9F%E9%87%8E%E7%88%B1/</url>
@@ -189,6 +160,35 @@
             <tag> 记录 </tag>
             
             <tag> Ae </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2025/07/05/hello-world/"/>
+      <url>/2025/07/05/hello-world/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>发现博客之前没有设置时间。</p></blockquote><h2 id="F-k-Alist"><a href="#F-k-Alist" class="headerlink" title="F**k Alist"></a>F**k Alist</h2><p>rt,被 Alist 背刺力（www</p><h3 id="一点闲话："><a href="#一点闲话：" class="headerlink" title="一点闲话："></a>一点闲话：</h3><p>Github 上开源的 Alist 被名为 <strong>不够科技（贵州）</strong> 的公司收购，疑似尝试上传了收集用户信息的代码（而且代码 AI 含量高(((</p><p>6 月 11 日，项目原开发者 Xhofe 在其 Alist News 订阅频道发布消息证实项目已交由公司运营，接下来 Xhofe 会帮忙审查开源版本仓库的代码，并且确保 release 的分支由 CI 自动构建。</p><p>还是被资本做局了w</p><h3 id="别把系统盘挂载在-Alist-上"><a href="#别把系统盘挂载在-Alist-上" class="headerlink" title="别把系统盘挂载在 Alist 上"></a>别把系统盘挂载在 Alist 上</h3><p>我知道这很蠢，但是别把系统盘挂载在 Alist 上。（（</p><p>因为你也不知道在哪里取消挂载，（你以为删除就是取消挂载？其实是 rm -rf</p><h2 id="博客构建："><a href="#博客构建：" class="headerlink" title="博客构建："></a>博客构建：</h2><p>基本信息 ☑</p><p>友链页面 ☑</p><p>关于页面 ☒</p><p>相册页面 ☒ </p><p>书架页面 ☒</p><p>Katex  ☑</p><p>一点css ☒ </p><p>☑☒ </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 记录 </category>
+          
+          <category> 闲话 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 记录 </tag>
+            
+            <tag> 闲话 </tag>
             
         </tags>
       
