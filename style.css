@@ -318,7 +318,7 @@ a.text-primary:focus , a.text-primary:hover {
 	padding: 0 5px;
 	max-width: 1200px;
 	margin: auto;
-	margin-top: -45vh;
+	margin-top: -35vh;
 }
 @media screen and (min-width:1700px){
 	#content{
@@ -529,7 +529,7 @@ body.leftbar-can-headroom.headroom---unpinned #navbar-main{
 	background-size: cover;
 }
 .banner-container{
-	height: calc(40vh - 120px) !important;
+	height: calc(30vh - 120px) !important;
 }
 .banner-title{
 	font-size: 1.8em;
