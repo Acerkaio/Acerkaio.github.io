@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Shawn's Blog</title>
+        <link>https://blog.acerkaio.top</link>
+        <description>物以类聚，鸟以群分</description>
+        <lastBuildDate>Tue, 02 Sep 2025 11:04:35 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>Shawn</generator>
+        <language>zh</language>
+        <copyright>Copyright © 2020-present Shawn</copyright>
+        <item>
+            <title><![CDATA[我常常追忆过去]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/我常常追忆过去</link>
+            <guid>https://blog.acerkaio.top/posts/2025/我常常追忆过去</guid>
+            <pubDate>Mon, 14 Jul 2025 20:46:46 GMT</pubDate>
+            <description><![CDATA[我该在哪里停留？我问我自己。]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[Ynoi Easy Round 2018 星野爱]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/星野爱</link>
+            <guid>https://blog.acerkaio.top/posts/2025/星野爱</guid>
+            <pubDate>Fri, 11 Jul 2025 15:57:17 GMT</pubDate>
+            <description><![CDATA[神秘题]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[时间限制40.00s]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/时间限制40-00s</link>
+            <guid>https://blog.acerkaio.top/posts/2025/时间限制40-00s</guid>
+            <pubDate>Fri, 11 Jul 2025 15:35:35 GMT</pubDate>
+            <description><![CDATA[40.00s？]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[不卡!]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/不卡</link>
+            <guid>https://blog.acerkaio.top/posts/2025/不卡</guid>
+            <pubDate>Wed, 09 Jul 2025 18:47:57 GMT</pubDate>
+            <description><![CDATA[ZJOI2022 众数的题解]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[卡卡卡常]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/卡卡卡常</link>
+            <guid>https://blog.acerkaio.top/posts/2025/卡卡卡常</guid>
+            <pubDate>Tue, 08 Jul 2025 11:36:00 GMT</pubDate>
+            <description><![CDATA[谢谢您]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[Adobe after effects 制作一些风格的视频]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/Adobe-after-effects-制作一些风格的视频</link>
+            <guid>https://blog.acerkaio.top/posts/2025/Adobe-after-effects-制作一些风格的视频</guid>
+            <pubDate>Sun, 06 Jul 2025 19:10:44 GMT</pubDate>
+            <description><![CDATA[情绪风、文字排版风、摄像机]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/hello-world</link>
+            <guid>https://blog.acerkaio.top/posts/2025/hello-world</guid>
+            <pubDate>Sat, 05 Jul 2025 12:00:00 GMT</pubDate>
+            <description><![CDATA[rm -rf 了，云端源码是以前的版本，就换了一个博客主题。]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[分块求组合数区间和的方法]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/分块求组合数区间和的方法</link>
+            <guid>https://blog.acerkaio.top/posts/2025/分块求组合数区间和的方法</guid>
+            <pubDate>Mon, 13 Jan 2025 11:56:49 GMT</pubDate>
+            <description><![CDATA[sqrt kill everything!]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[一些关于硬件]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/一些关于硬件</link>
+            <guid>https://blog.acerkaio.top/posts/2025/一些关于硬件</guid>
+            <pubDate>Mon, 13 Jan 2025 11:28:21 GMT</pubDate>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+        <item>
+            <title><![CDATA[扫描线学习笔记]]></title>
+            <link>https://blog.acerkaio.top/posts/2024/扫描线学习笔记</link>
+            <guid>https://blog.acerkaio.top/posts/2024/扫描线学习笔记</guid>
+            <pubDate>Sun, 14 Jan 2024 21:45:03 GMT</pubDate>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
+    </channel>
+</rss>
