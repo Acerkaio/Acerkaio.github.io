@@ -4,11 +4,19 @@
         <title>Shawn's Blog</title>
         <link>https://blog.acerkaio.top</link>
         <description>物以类聚，鸟以群分</description>
-        <lastBuildDate>Tue, 02 Sep 2025 14:37:19 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 06 Sep 2025 00:08:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Shawn</generator>
         <language>zh</language>
         <copyright>Copyright © 2020-present Shawn</copyright>
+        <item>
+            <title><![CDATA[KTT 学习笔记]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/KTT</link>
+            <guid>https://blog.acerkaio.top/posts/2025/KTT</guid>
+            <pubDate>Fri, 05 Sep 2025 22:26:00 GMT</pubDate>
+            <description><![CDATA[坏了，学到有用的了]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
         <item>
             <title><![CDATA[K-D Tree 学习笔记]]></title>
             <link>https://blog.acerkaio.top/posts/2025/K-DTree</link>
@@ -79,13 +87,6 @@
             <guid>https://blog.acerkaio.top/posts/2025/分块求组合数区间和的方法</guid>
             <pubDate>Mon, 13 Jan 2025 11:56:49 GMT</pubDate>
             <description><![CDATA[sqrt kill everything!]]></description>
-            <author>114514@gmail.com (Shawn)</author>
-        </item>
-        <item>
-            <title><![CDATA[一些关于硬件]]></title>
-            <link>https://blog.acerkaio.top/posts/2025/一些关于硬件</link>
-            <guid>https://blog.acerkaio.top/posts/2025/一些关于硬件</guid>
-            <pubDate>Mon, 13 Jan 2025 11:28:21 GMT</pubDate>
             <author>114514@gmail.com (Shawn)</author>
         </item>
     </channel>
