@@ -4,11 +4,19 @@
         <title>Shawn's Blog</title>
         <link>https://blog.acerkaio.top</link>
         <description>物以类聚，鸟以群分</description>
-        <lastBuildDate>Sat, 06 Sep 2025 00:08:44 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 08 Sep 2025 14:59:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Shawn</generator>
         <language>zh</language>
         <copyright>Copyright © 2020-present Shawn</copyright>
+        <item>
+            <title><![CDATA[模拟赛、闲话]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/syproblem</link>
+            <guid>https://blog.acerkaio.top/posts/2025/syproblem</guid>
+            <pubDate>Mon, 08 Sep 2025 21:57:00 GMT</pubDate>
+            <description><![CDATA[若干模拟赛、若干闲话]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
         <item>
             <title><![CDATA[KTT 学习笔记]]></title>
             <link>https://blog.acerkaio.top/posts/2025/KTT</link>
@@ -79,14 +87,6 @@
             <guid>https://blog.acerkaio.top/posts/2025/hello-world</guid>
             <pubDate>Sat, 05 Jul 2025 12:00:00 GMT</pubDate>
             <description><![CDATA[rm -rf 了，云端源码是以前的版本，就换了一个博客主题。]]></description>
-            <author>114514@gmail.com (Shawn)</author>
-        </item>
-        <item>
-            <title><![CDATA[分块求组合数区间和的方法]]></title>
-            <link>https://blog.acerkaio.top/posts/2025/分块求组合数区间和的方法</link>
-            <guid>https://blog.acerkaio.top/posts/2025/分块求组合数区间和的方法</guid>
-            <pubDate>Mon, 13 Jan 2025 11:56:49 GMT</pubDate>
-            <description><![CDATA[sqrt kill everything!]]></description>
             <author>114514@gmail.com (Shawn)</author>
         </item>
     </channel>
