@@ -4,11 +4,19 @@
         <title>Shawn's Blog</title>
         <link>https://blog.acerkaio.top</link>
         <description>物以类聚，鸟以群分</description>
-        <lastBuildDate>Wed, 17 Sep 2025 14:00:33 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 Sep 2025 05:32:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Shawn</generator>
         <language>zh</language>
         <copyright>Copyright © 2020-present Shawn</copyright>
+        <item>
+            <title><![CDATA[MegaFactorial]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/MegaFactorial</link>
+            <guid>https://blog.acerkaio.top/posts/2025/MegaFactorial</guid>
+            <pubDate>Sat, 20 Sep 2025 13:24:00 GMT</pubDate>
+            <description><![CDATA[有在补题。]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
         <item>
             <title><![CDATA[树上查询]]></title>
             <link>https://blog.acerkaio.top/posts/2025/树上查询</link>
@@ -79,14 +87,6 @@
             <guid>https://blog.acerkaio.top/posts/2025/卡卡卡常</guid>
             <pubDate>Tue, 08 Jul 2025 11:36:00 GMT</pubDate>
             <description><![CDATA[谢谢您]]></description>
-            <author>114514@gmail.com (Shawn)</author>
-        </item>
-        <item>
-            <title><![CDATA[Adobe after effects 制作一些风格的视频]]></title>
-            <link>https://blog.acerkaio.top/posts/2025/Adobe-after-effects-制作一些风格的视频</link>
-            <guid>https://blog.acerkaio.top/posts/2025/Adobe-after-effects-制作一些风格的视频</guid>
-            <pubDate>Sun, 06 Jul 2025 19:10:44 GMT</pubDate>
-            <description><![CDATA[情绪风、文字排版风、摄像机]]></description>
             <author>114514@gmail.com (Shawn)</author>
         </item>
     </channel>
