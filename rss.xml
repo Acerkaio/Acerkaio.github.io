@@ -4,11 +4,19 @@
         <title>Shawn's Blog</title>
         <link>https://blog.acerkaio.top</link>
         <description>物以类聚，鸟以群分</description>
-        <lastBuildDate>Tue, 28 Oct 2025 14:10:31 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 08 Nov 2025 01:31:34 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Shawn</generator>
         <language>zh</language>
         <copyright>Copyright © 2020-present Shawn</copyright>
+        <item>
+            <title><![CDATA[树上好题]]></title>
+            <link>https://blog.acerkaio.top/posts/2025/题</link>
+            <guid>https://blog.acerkaio.top/posts/2025/题</guid>
+            <pubDate>Fri, 07 Nov 2025 16:56:00 GMT</pubDate>
+            <description><![CDATA[树上好题]]></description>
+            <author>114514@gmail.com (Shawn)</author>
+        </item>
         <item>
             <title><![CDATA[我终将成为你的倒影]]></title>
             <link>https://blog.acerkaio.top/posts/2025/我终将成为你的倒影</link>
@@ -79,14 +87,6 @@
             <guid>https://blog.acerkaio.top/posts/2025/不卡</guid>
             <pubDate>Wed, 09 Jul 2025 18:47:57 GMT</pubDate>
             <description><![CDATA[ZJOI2022 众数的题解]]></description>
-            <author>114514@gmail.com (Shawn)</author>
-        </item>
-        <item>
-            <title><![CDATA[卡卡卡常]]></title>
-            <link>https://blog.acerkaio.top/posts/2025/卡卡卡常</link>
-            <guid>https://blog.acerkaio.top/posts/2025/卡卡卡常</guid>
-            <pubDate>Tue, 08 Jul 2025 11:36:00 GMT</pubDate>
-            <description><![CDATA[谢谢您]]></description>
             <author>114514@gmail.com (Shawn)</author>
         </item>
     </channel>
